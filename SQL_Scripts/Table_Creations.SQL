@@ -43,7 +43,7 @@ CREATE TABLE Person (
                 PersonIdNumber INT IDENTITY(100000,1) NOT NULL,
                 PersonLastName VARCHAR(30),
 				PersonFirstName VARCHAR(30),
-				PersonMiddileInitial VARCHAR(1),
+				PersonMiddleInitial VARCHAR(30),
 				DateLastModified DATETIME NOT NULL,
 				ModifiedByUserId VARCHAR(30) NOT NULL,
                 CONSTRAINT Person_pk PRIMARY KEY (PersonIdNumber)
