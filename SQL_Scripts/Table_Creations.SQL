@@ -223,4 +223,8 @@ ALTER TABLE CCMUserSecurity ADD CONSTRAINT CCMUserSecurity_CaseTypeCode_fk
 FOREIGN KEY (CaseTypeCode)
 REFERENCES CaseType (CaseTypeCode)
 
+ALTER TABLE CCMUserSecurity ADD CONSTRAINT CCMUserSecurity_CCMUser_fk
+FOREIGN KEY (UserId)
+REFERENCES CCMUser (UserId)
+
 */
