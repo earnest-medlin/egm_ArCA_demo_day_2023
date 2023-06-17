@@ -298,3 +298,25 @@ INSERT INTO CircuitJudge(JudgeId, AttorneyId, CircuitId, DateLastModified, Modif
 	('C19WD06','AR1002044',24,CURRENT_TIMESTAMP,'EGMEDLIN'),
 	('C19WD07','AR1005901',24,CURRENT_TIMESTAMP,'EGMEDLIN');
 
+set identity_insert CaseAssignmentRule on;
+	
+INSERT INTO CaseAssignmentRule(RuleNumber, CircuitId, CountyId, CourtCode, CaseTypeCode, AssignmentMethod, RuleBeginDate, RuleEndDate,	DateLastModified, ModifiedByUserId) VALUES
+	(1000,28,'43','CI','14','W','2013-12-06',null,CURRENT_TIMESTAMP,'EGMEDLIN'),
+	(1001,28,'43','CI','12','W','2017-01-01',null,CURRENT_TIMESTAMP,'EGMEDLIN'),
+	(1002,28,'43','CI','11','W','2020-01-01',null,CURRENT_TIMESTAMP,'EGMEDLIN'),
+	(1003,28,'43','CI','DA','W','2021-01-01',null,CURRENT_TIMESTAMP,'EGMEDLIN'),
+	(1004,28,'43','CI','SS','W','2021-01-01',null,CURRENT_TIMESTAMP,'EGMEDLIN'),
+	(1005,28,'43','CI','ST','W','2021-01-01',null,CURRENT_TIMESTAMP,'EGMEDLIN'),
+	(1006,28,'43','CI','SU','W','2021-01-01',null,CURRENT_TIMESTAMP,'EGMEDLIN'),
+	(1007,28,'43','CO','15','W','2015-04-02',null,CURRENT_TIMESTAMP,'EGMEDLIN'),
+	(1008,28,'43','JV','DN','W','2022-01-01',null,CURRENT_TIMESTAMP,'EGMEDLIN'),
+	(1009,28,'43','JV','DX','W','2022-01-01',null,CURRENT_TIMESTAMP,'EGMEDLIN'),
+	(1010,28,'43','JV','JA','W','2022-01-01',null,CURRENT_TIMESTAMP,'EGMEDLIN'),
+	(1011,28,'43','JV','OI','W','2013-12-06',null,CURRENT_TIMESTAMP,'EGMEDLIN'),
+	(1012,28,'43','JV','EJ','W','2021-01-01',null,CURRENT_TIMESTAMP,'EGMEDLIN'),
+	(1013,28,'43','JV','JD','W','2021-01-01',null,CURRENT_TIMESTAMP,'EGMEDLIN'),
+	(1014,28,'43','JV','FS','W','2021-01-01',null,CURRENT_TIMESTAMP,'EGMEDLIN');
+	
+set identity_insert CaseAssignmentRule off;	
+
+
