@@ -17,7 +17,7 @@ public class EmployeeController : ControllerBase
     [HttpGet]
     [Route("/SearchCaseAssignmentRules")]
 
-    public Response SearchCaseAssignmentRules()
+    public Response SearchCaseAssignmentRules(string? circuitIdSearch = null, string? countyIdSearch = "",string? courtCodeSearch = "", string? caseTypeCodeSearch = "")
     {
         Response response = new Response();
         try
@@ -27,7 +27,7 @@ public class EmployeeController : ControllerBase
             using(SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
                 sqlConnection.Open();
-                caseAssignmentRules = CaseAssignmentRule.SearchCaseAssignmentRules(sqlConnection);
+                caseAssignmentRules = CaseAssignmentRule.SearchCaseAssignmentRules(sqlConnection,Convert.ToInt32(circuitIdSearch),countyIdSearch,courtCodeSearch,caseTypeCodeSearch);
             }
 
             string message = "";
@@ -53,7 +53,7 @@ public class EmployeeController : ControllerBase
         }
         return response;
     }
-        static string GetConnectionString()
+    static string GetConnectionString()
     {
         string serverName = @"AO-EGM-LA-2999\SQLEXPRESS"; //Change to the "Server Name" you see when you launch SQL Server Management Studio.
         string databaseName = "Court_Case_Management"; //Change to the database where you created your Employee table.
