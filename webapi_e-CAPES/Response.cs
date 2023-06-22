@@ -10,5 +10,9 @@ namespace webapi_e_CAPES
         public string? Message { get; set; }
         public List<CaseAssignmentRule> CaseAssignmentRules { get; set; }
         public List<JudgeAssignmentDistributionRule> JudgeAssignmentDistributionRules { get; set; }
+        public List<Circuit> Circuits { get; set;}
+        public List<County> Counties { get; set; }
+        public List<Court> Courts { get; set;}
+        public List<CaseType> CaseTypes { get; set; }
     }
 }
