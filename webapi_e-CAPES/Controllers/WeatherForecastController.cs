@@ -29,4 +29,13 @@ public class WeatherForecastController : ControllerBase
         })
         .ToArray();
     }
+
+
+    [HttpGet]
+    [Route("/SayHello")]
+    public string SayHello()
+    {
+        return "Hello World!";
+    }
+
 }

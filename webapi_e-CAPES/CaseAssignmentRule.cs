@@ -18,11 +18,11 @@ namespace webapi_e_CAPES
 
         public string AssignmentMethod { get; set;}
 
-        public DateOnly RuleBeginDate { get; set;}
+        public DateTime RuleBeginDate { get; set;}
 
-        public DateOnly? RuleEndDate { get; set;}
+        public DateTime? RuleEndDate { get; set;}
 
-        public DateTime DateLastModified { get; set;}
+        public DateTime? DateLastModified { get; set;}
 
         public string ModifiedByUserId { get; set;}
         public int CaseAssignmentRuleCount { get; set; }  
@@ -31,7 +31,7 @@ namespace webapi_e_CAPES
         {
 
         }
-        public CaseAssignmentRule (int ruleNumber, int circuitId, string countyId, string courtCode, string caseTypeCode, string assignmentMedthod, DateOnly ruleBeginDate, DateOnly? ruleEndDate, DateTime dateLastModified, string modifiedByUserId   )
+        public CaseAssignmentRule (int ruleNumber, int circuitId, string countyId, string courtCode, string caseTypeCode, string assignmentMedthod, DateTime ruleBeginDate, DateTime? ruleEndDate, DateTime? dateLastModified, string modifiedByUserId )
         {
             RuleNumber = ruleNumber; 
             CircuitId = circuitId; //Search on this field.
@@ -44,90 +44,36 @@ namespace webapi_e_CAPES
             DateLastModified = dateLastModified;
             ModifiedByUserId = modifiedByUserId;
         }
+        public CaseAssignmentRule (int circuitId, string countyId, string courtCode, string caseTypeCode, string assignmentMedthod, DateTime ruleBeginDate, DateTime? dateLastModified, string modifiedByUserId )
+        {
+            CircuitId = circuitId;
+            CountyId = countyId;
+            CourtCode = courtCode;
+            CaseTypeCode = caseTypeCode;
+            AssignmentMethod = assignmentMedthod;
+            RuleBeginDate = ruleBeginDate;
+            //RuleEndDate = ruleEndDate;
+            DateLastModified = dateLastModified;
+            ModifiedByUserId = modifiedByUserId;
+        }
         //public static List<CaseAssignmentRule> SearchCaseAssignmentRules(SqlConnection sqlConnection, string search = "")
         public static List<CaseAssignmentRule> SearchCaseAssignmentRules(SqlConnection sqlConnection, int? circuitIdSearch = null, string? countyIdSearch = null,string? courtCodeSearch = null, string? caseTypeCodeSearch = null )
         {
             List<CaseAssignmentRule> caseAssignmentRules = new List<CaseAssignmentRule>();
-            //TO DO: Search on multiple parameters, not just a single paramter or no parameter
-            string sqlSelect = "Select RuleNumber, CircuitId, CountyId, CourtCode, CaseTypeCode, AssignmentMethod, RuleBeginDate, RuleEndDate, DateLastModified, ModifiedByUserId, count(*) over () as CaseAssignmentRuleCount FROM Court_Case_Management.dbo.CaseAssignmentRule";
-            string sqlWhere;
             
-            if(circuitIdSearch == 0 && countyIdSearch == "" && courtCodeSearch == "" && caseTypeCodeSearch == "")
-            {
-                sqlWhere = ";";
-            }
-            else if(countyIdSearch == "" && courtCodeSearch == "" && caseTypeCodeSearch == "") //B,C,D are null
-            {
-                sqlWhere = " where circuitId = " + circuitIdSearch + ";";	
-            }
-            else if(circuitIdSearch == 0 && courtCodeSearch == "" && caseTypeCodeSearch == "") //A,C,D are null
-            {
-                sqlWhere = " where countyId = " + "'" + countyIdSearch + "'" + ";";
-            }
-            else if(circuitIdSearch == 0 && countyIdSearch == "" && caseTypeCodeSearch == "") //A,B,D are null
-            {
-                sqlWhere = " where courtCode = " + "'" + courtCodeSearch + "'" + ";";
-            }
-            else if(circuitIdSearch == 0 && countyIdSearch == "" && courtCodeSearch == "") //A,B,C are null
-            {
-                sqlWhere = " where caseTypeCode = " + "'" + caseTypeCodeSearch + "'" + ";";
-            }
-            else if(courtCodeSearch == "" && caseTypeCodeSearch == "") // C,D ARE null
-            {
-                sqlWhere = " where circuitId = " + circuitIdSearch + " and countyId = " + "'" + countyIdSearch + "'" + ";";	
-            }
-            else if(countyIdSearch == "" && caseTypeCodeSearch == "") //B,D ARE null
-            {
-                sqlWhere = " where circuitId = " + circuitIdSearch + " and courtCode = " + "'" + courtCodeSearch + "'" + ";";	
-            }
-            else if(countyIdSearch == "" && courtCodeSearch == "") //B,C ARE null
-            {
-                sqlWhere = " where circuitId = " + circuitIdSearch + " and caseTypeCode = " + "'" + caseTypeCodeSearch + "'" + ";";	
-            }
-            else if(circuitIdSearch == 0 && caseTypeCodeSearch == "") //A,D ARE null
-            {
-                sqlWhere = " where countyId = " + "'" + countyIdSearch + "'" + " and courtCode = " + "'" + courtCodeSearch + "'" + ";";
-            }
-            else if(circuitIdSearch == 0 && courtCodeSearch == "") //A,C, ARE null
-            {
-                sqlWhere = " where countyId = " + "'" + countyIdSearch + "'" + " and caseTypeCode = " + "'" + caseTypeCodeSearch + "'" + ";";
-            }
-            else if(circuitIdSearch == 0 && countyIdSearch == "") //A,B ARE null
-            {
-                sqlWhere = " where courtCode = " + "'" + courtCodeSearch + "'" + " and caseTypeCode = " + "'" + caseTypeCodeSearch + "'" + ";";
-            }
-            else if(caseTypeCodeSearch == "") //D IS null
-            {
-                sqlWhere = " where circuitId = " + circuitIdSearch + " and countyId = " + "'" + countyIdSearch + "'" + " and courtCode = " + "'" + courtCodeSearch + "'" + ";";
-            }
-            else if(courtCodeSearch == "") //C IS null
-            {
-                sqlWhere = " where circuitId = " + circuitIdSearch + " and countyId = " + "'" + countyIdSearch + "'" + " and caseTypeCode = " + "'" + caseTypeCodeSearch + "'" + ";";
-            }
-            else if(countyIdSearch == "") //B IS null
-            {
-                sqlWhere = " where circuitId = " + circuitIdSearch + " and courtCode = " + "'" + courtCodeSearch + "'" + " and caseTypeCode = " + "'" + caseTypeCodeSearch + "'" + ";";
-            }
-            else if(circuitIdSearch == 0) //A IS null
-            {
-                sqlWhere = " where countyId = " + "'" + countyIdSearch + "'" + " and courtCode = " + "'" + courtCodeSearch + "'" + " and caseTypeCode = " + "'" + caseTypeCodeSearch + "'" + ";";
-            }
-            else //NO PARAMETERS ARE null
-            {
-                sqlWhere = " where circuitId = " + circuitIdSearch + " and countyId = " + "'" + countyIdSearch + "'" + " and courtCode = " + "'" + courtCodeSearch + "'" + " and caseTypeCode = " + "'" + caseTypeCodeSearch + "'" + ";";
-            }
-
+            string sqlSelect = "Select RuleNumber, CircuitId, CountyId, CourtCode, CaseTypeCode, AssignmentMethod, RuleBeginDate, RuleEndDate, DateLastModified, ModifiedByUserId, count(*) over () as CaseAssignmentRuleCount FROM Court_Case_Management.dbo.CaseAssignmentRule "; 
+            string sqlWhere = "where CircuitId like '%' + @CircuitId + '%' and CountyId like '%'+ @CountyId + '%' and CourtCode like '%' + @CourtCode + '%' and CaseTypeCode like '%' + @CaseTypeCode + '%';";
             string sql = sqlSelect + sqlWhere;
 
             SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection);
             sqlCommand.CommandType = System.Data.CommandType.Text;
 
-            SqlParameter paramCircuitIdSearch = new SqlParameter("@CircuitIdSearch", circuitIdSearch);
-            SqlParameter paramCountyIdSearch = new SqlParameter("@CountyIdSearch", countyIdSearch);
-            SqlParameter paramCourtCodeSearch = new SqlParameter("@CourtCodeSearch", courtCodeSearch);
-            SqlParameter paramCaseTypeCodeSearch = new SqlParameter("@CaseTypeCodeSearch", caseTypeCodeSearch);
+            SqlParameter paramCircuitIdSearch = new SqlParameter("@CircuitId", circuitIdSearch == 0 ? "" : circuitIdSearch.ToString());
+            SqlParameter paramCountyIdSearch = new SqlParameter("@CountyId", countyIdSearch);
+            SqlParameter paramCourtCodeSearch = new SqlParameter("@CourtCode", courtCodeSearch);
+            SqlParameter paramCaseTypeCodeSearch = new SqlParameter("@CaseTypeCode", caseTypeCodeSearch);
 
-            paramCircuitIdSearch.DbType = System.Data.DbType.Int32;
+            paramCircuitIdSearch.DbType = System.Data.DbType.String;
             paramCountyIdSearch.DbType = System.Data.DbType.String;
             paramCourtCodeSearch.DbType = System.Data.DbType.String;
             paramCaseTypeCodeSearch.DbType = System.Data.DbType.String;
@@ -136,11 +82,7 @@ namespace webapi_e_CAPES
             sqlCommand.Parameters.Add(paramCountyIdSearch);
             sqlCommand.Parameters.Add(paramCourtCodeSearch);
             sqlCommand.Parameters.Add(paramCaseTypeCodeSearch);
-
-            //SqlParameter paramSearch = new SqlParameter("@Search", search);
-            //paramSearch.DbType = System.Data.DbType.String;
-            //sqlCommand.Parameters.Add(paramSearch);
-            
+           
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
 
             while (sqlDataReader.Read())
@@ -153,9 +95,10 @@ namespace webapi_e_CAPES
                 caseAssignmentRule.CourtCode = sqlDataReader["CourtCode"].ToString();
                 caseAssignmentRule.CaseTypeCode = sqlDataReader["CaseTypeCode"].ToString();
                 caseAssignmentRule.AssignmentMethod = sqlDataReader["AssignmentMethod"].ToString();
-                caseAssignmentRule.RuleBeginDate = DateOnly.FromDateTime(Convert.ToDateTime((sqlDataReader["RuleBeginDate"].ToString())));
+                //caseAssignmentRule.RuleBeginDate = DateOnly.FromDateTime(Convert.ToDateTime((sqlDataReader["RuleBeginDate"].ToString())));
+                caseAssignmentRule.RuleBeginDate = Convert.ToDateTime((sqlDataReader["RuleBeginDate"].ToString()));
                 //caseAssignmentRule.RuleEndDate = DateOnly.FromDateTime(Convert.ToDateTime((sqlDataReader["RuleEndDate"].ToString())));
-                caseAssignmentRule.RuleEndDate = (sqlDataReader["RuleEndDate"] == DBNull.Value) ? null : DateOnly.FromDateTime(Convert.ToDateTime((sqlDataReader["RuleEndDate"].ToString())));
+                caseAssignmentRule.RuleEndDate = (sqlDataReader["RuleEndDate"] == DBNull.Value) ? null : Convert.ToDateTime((sqlDataReader["RuleEndDate"].ToString()));
                 caseAssignmentRule.DateLastModified = Convert.ToDateTime((sqlDataReader["DateLastModified"].ToString()));
                 caseAssignmentRule.ModifiedByUserId = sqlDataReader["ModifiedByUserId"].ToString();
                 caseAssignmentRule.CaseAssignmentRuleCount = Convert.ToInt32(sqlDataReader["CaseAssignmentRuleCount"].ToString());
@@ -163,6 +106,118 @@ namespace webapi_e_CAPES
                 caseAssignmentRules.Add(caseAssignmentRule);
             }
             return caseAssignmentRules;
+        }
+        
+        public static int InsertCaseAssignmentRule(CaseAssignmentRule caseAssignmentRule, SqlConnection sqlConnection)
+        {
+            //string sqlInsert = "insert into CaseAssignmentRule (CircuitId, CountyId, CourtCode, CaseTypeCode, AssignmentMethod, RuleBeginDate, RuleEndDate, DateLastModified, ModifiedByUserId) ";
+            //string sqlValues = "values ( @CircuitId , @CountyId , @CourtCode , @CaseTypeCode , @AssignmentMethod , @RuleBeginDate , @RuleEndDate , @DateLastModified , @ModifiedByUserId );";
+            //string sql = sqlInsert + sqlValues;
+
+            string sqlInsert = "insert into Court_Case_Management.dbo.CaseAssignmentRule (CircuitId, CountyId, CourtCode, CaseTypeCode, AssignmentMethod, RuleBeginDate, DateLastModified, ModifiedByUserId) ";
+            string sqlValues = "values ( @CircuitId , @CountyId , @CourtCode , @CaseTypeCode , @AssignmentMethod , @RuleBeginDate , @DateLastModified , @ModifiedByUserId );";
+            string sql = sqlInsert + sqlValues;
+
+            SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection);
+            sqlCommand.CommandType = System.Data.CommandType.Text;
+            
+            SqlParameter paramCircuitId = new SqlParameter("@CircuitId", caseAssignmentRule.CircuitId);
+            SqlParameter paramCountyId = new SqlParameter("@CountyId", caseAssignmentRule.CountyId);
+            SqlParameter paramCourtCode = new SqlParameter("@CourtCode", caseAssignmentRule.CourtCode);
+            SqlParameter paramCaseTypeCode = new SqlParameter("@CaseTypeCode", caseAssignmentRule.CaseTypeCode);
+            SqlParameter paramAssignmentMethod = new SqlParameter("@AssignmentMethod", caseAssignmentRule.AssignmentMethod);
+            SqlParameter paramRuleBeginDate = new SqlParameter("@RuleBeginDate", caseAssignmentRule.RuleBeginDate);
+            //SqlParameter paramRuleEndDate = new SqlParameter("@RuleEndDate", caseAssignmentRule.RuleEndDate == null ? DBNull.Value : caseAssignmentRule.RuleEndDate);
+            SqlParameter paramDateLastModified = new SqlParameter("@DateLastModified", caseAssignmentRule.DateLastModified == null ? DateTime.Now : caseAssignmentRule.DateLastModified);
+            SqlParameter paramModifiedByUserId = new SqlParameter("@ModifiedByUserId", caseAssignmentRule.ModifiedByUserId);
+            
+            paramCircuitId.DbType = System.Data.DbType.Int32;
+            paramCountyId.DbType = System.Data.DbType.String;
+            paramCourtCode.DbType = System.Data.DbType.String;
+            paramCaseTypeCode.DbType = System.Data.DbType.String;
+            paramAssignmentMethod.DbType = System.Data.DbType.String;
+            paramRuleBeginDate.DbType = System.Data.DbType.DateTime;
+            //paramRuleEndDate.DbType = System.Data.DbType.DateTime2;
+            paramDateLastModified.DbType = System.Data.DbType.DateTime2;
+            paramModifiedByUserId.DbType = System.Data.DbType.String;
+
+            sqlCommand.Parameters.Add(paramCircuitId);
+            sqlCommand.Parameters.Add(paramCountyId);
+            sqlCommand.Parameters.Add(paramCourtCode);
+            sqlCommand.Parameters.Add(paramCaseTypeCode);
+            sqlCommand.Parameters.Add(paramAssignmentMethod);
+            sqlCommand.Parameters.Add(paramRuleBeginDate);
+            //sqlCommand.Parameters.Add(paramRuleEndDate);
+            sqlCommand.Parameters.Add(paramDateLastModified);
+            sqlCommand.Parameters.Add(paramModifiedByUserId);
+
+            int rowsAffected = sqlCommand.ExecuteNonQuery();
+
+            return rowsAffected;
+        }
+
+        public static int DeleteCaseAssignmentRule(int ruleNumber, SqlConnection sqlConnection)
+        {
+            string sqlDelete = "delete from Court_Case_Management.dbo.CaseAssignmentRule ";
+            string sqlWhere = "where RuleNumber = @RuleNumber;";
+            string sql = sqlDelete + sqlWhere;
+
+            SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection);
+            sqlCommand.CommandType = System.Data.CommandType.Text;
+
+            SqlParameter paramRuleNumber = new SqlParameter("@RuleNumber", ruleNumber);
+            paramRuleNumber.DbType = System.Data.DbType.Int32;
+            sqlCommand.Parameters.Add(paramRuleNumber);
+
+            int rowsAffected = sqlCommand.ExecuteNonQuery();
+            return rowsAffected;
+        }
+
+        public static int UpdateCaseAssignmentRule(CaseAssignmentRule caseAssignmentRule, SqlConnection sqlConnection)
+        {
+            string sqlUpdate = "update Court_Case_Management.dbo.CaseAssignmentRule ";
+            string sqlSet = "set CircuitId = @CircuitId, CountyId = @CountyId, CourtCode = @CourtCode, CaseTypeCode = @CaseTypeCode, AssignmentMethod = @AssignmentMethod, RuleBeginDate = @RuleBeginDate, RuleEndDate = @RuleEndDate, DateLastModified = @DateLastModified, ModifiedByUserId = @ModifiedByUserId ";
+            string sqlWhere = "where RuleNumber = @RuleNumber;";
+            string sql = sqlUpdate + sqlSet + sqlWhere;
+
+            SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection);
+            sqlCommand.CommandType = System.Data.CommandType.Text;
+
+            SqlParameter paramRuleNumber = new SqlParameter("@RuleNumber", caseAssignmentRule.RuleNumber);
+            SqlParameter paramCircuitId = new SqlParameter("@CircuitId", caseAssignmentRule.CircuitId);
+            SqlParameter paramCountyId = new SqlParameter("@CountyId", caseAssignmentRule.CountyId);
+            SqlParameter paramCourtCode = new SqlParameter("@CourtCode", caseAssignmentRule.CourtCode);
+            SqlParameter paramCaseTypeCode = new SqlParameter("@CaseTypeCode", caseAssignmentRule.CaseTypeCode);
+            SqlParameter paramAssignmentMethod = new SqlParameter("@AssignmentMethod", caseAssignmentRule.AssignmentMethod);
+            SqlParameter paramRuleBeginDate = new SqlParameter("@RuleBeginDate", caseAssignmentRule.RuleBeginDate);
+            SqlParameter paramRuleEndDate = new SqlParameter("@RuleEndDate", caseAssignmentRule.RuleEndDate == null ? (object)DBNull.Value : caseAssignmentRule.RuleEndDate);
+            SqlParameter paramDateLastModified = new SqlParameter("@DateLastModified", caseAssignmentRule.DateLastModified == null ? DateTime.Now : caseAssignmentRule.DateLastModified);
+            SqlParameter paramModifiedByUserId = new SqlParameter("@ModifiedByUserId", caseAssignmentRule.ModifiedByUserId);
+
+            paramRuleNumber.DbType = System.Data.DbType.Int32;
+            paramCircuitId.DbType = System.Data.DbType.Int32;
+            paramCountyId.DbType = System.Data.DbType.String;
+            paramCourtCode.DbType = System.Data.DbType.String;
+            paramCaseTypeCode.DbType = System.Data.DbType.String;
+            paramAssignmentMethod.DbType = System.Data.DbType.String;
+            paramRuleBeginDate.DbType = System.Data.DbType.DateTime;
+            paramRuleEndDate.DbType = System.Data.DbType.DateTime2;
+            paramDateLastModified.DbType = System.Data.DbType.DateTime2;
+            paramModifiedByUserId.DbType = System.Data.DbType.String;
+
+            sqlCommand.Parameters.Add(paramRuleNumber);
+            sqlCommand.Parameters.Add(paramCircuitId);
+            sqlCommand.Parameters.Add(paramCountyId);
+            sqlCommand.Parameters.Add(paramCourtCode);
+            sqlCommand.Parameters.Add(paramCaseTypeCode);
+            sqlCommand.Parameters.Add(paramAssignmentMethod);
+            sqlCommand.Parameters.Add(paramRuleBeginDate);
+            sqlCommand.Parameters.Add(paramRuleEndDate);
+            sqlCommand.Parameters.Add(paramDateLastModified);
+            sqlCommand.Parameters.Add(paramModifiedByUserId);
+
+            int rowsAffected = sqlCommand.ExecuteNonQuery();
+            return rowsAffected;
         }
     }
 }

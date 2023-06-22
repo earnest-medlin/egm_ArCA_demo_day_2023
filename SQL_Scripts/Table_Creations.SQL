@@ -168,9 +168,12 @@ ALTER TABLE JudgeAssignmentDistribution ADD CONSTRAINT JudgeAssignmentDistributi
 FOREIGN KEY (JudgeId)
 REFERENCES CircuitJudge (JudgeId)
 
+
 ALTER TABLE JudgeAssignmentDistribution ADD CONSTRAINT JudgeAssignmentDistribution_CaseAssignmentRule_fk
 FOREIGN KEY (RuleNumber)
 REFERENCES CaseAssignmentRule (RuleNumber)
+ON DELETE CASCADE 
+ON UPDATE CASCADE
 
 ALTER TABLE CaseAssignmentRule ADD CONSTRAINT CaseAssignmentRule_Circuit_fk
 FOREIGN KEY (CircuitId)

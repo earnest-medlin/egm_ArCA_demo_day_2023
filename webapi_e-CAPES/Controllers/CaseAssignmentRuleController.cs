@@ -5,11 +5,11 @@ namespace webapi_e_CAPES.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class EmployeeController : ControllerBase
+public class CaseAssignmentRuleController : ControllerBase
 {
     private readonly ILogger<WeatherForecastController> _logger;
 
-    public EmployeeController(ILogger<WeatherForecastController> logger)
+    public CaseAssignmentRuleController(ILogger<WeatherForecastController> logger)
     {
         _logger = logger;
     }
@@ -48,11 +48,124 @@ public class EmployeeController : ControllerBase
         }
         catch (Exception e)
         {
-            response.Result = "failue";
+            response.Result = "failure";
             response.Message = e.Message;
         }
         return response;
     }
+
+    [HttpPost]
+    [Route("/InsertCaseAssignmentRule")]
+    public Response InsertCaseAssignmentRule(string circuitId, string countyId, string courtCode, string caseTypeCode, string assignmentMedthod, string ruleBeginDate, string? dateLastModified, string modifiedByUserId)
+    {
+        //string? ruleEndDate
+        Response response = new Response();
+        try
+        {
+            List<CaseAssignmentRule> caseAssignmentRules = new List<CaseAssignmentRule>();
+
+            DateTime? editDate = dateLastModified == null ? null : Convert.ToDateTime(dateLastModified);
+
+            CaseAssignmentRule caseAssignmentRule = new CaseAssignmentRule(Convert.ToInt32(circuitId), countyId, courtCode, caseTypeCode, assignmentMedthod, Convert.ToDateTime(ruleBeginDate), editDate, modifiedByUserId);
+
+            int rowsAffected = 0;
+
+            string connectionString = GetConnectionString();
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                sqlConnection.Open();
+                rowsAffected = CaseAssignmentRule.InsertCaseAssignmentRule(caseAssignmentRule,sqlConnection);
+                //TO-DO
+                //caseAssignmentRules = CaseAssignmentRule.SearchCaseAssignmentRules(sqlConnection);
+            }
+
+            response.Result = (rowsAffected == 1) ? "success" : "failure";
+            response.Message = $"{rowsAffected} rows affected.";
+            //TO-DO
+            //response.CaseAssignmentRules = caseAssignmentRules;
+        }
+        catch (Exception e)
+        {
+            response.Result = "failure";
+            response.Message = e.Message;
+        }
+
+        return response;
+    }
+
+    [HttpPut]
+    [Route("/UpdateCaseAssignmentRule")]
+    public Response UpdateCaseAssignmentRule(string ruleNumber, string circuitId, string countyId, string courtCode, string caseTypeCode, string assignmentMedthod, string ruleBeginDate, string? ruleEndDate, string? dateLastModified, string modifiedByUserId)
+    {
+        Response response = new Response();
+        try
+        {
+            List<CaseAssignmentRule> caseAssignmentRules = new List<CaseAssignmentRule>();
+
+            DateTime? endDate = ruleEndDate == null ? null : Convert.ToDateTime(ruleEndDate);
+            DateTime? editDate = dateLastModified == null ? null : Convert.ToDateTime(dateLastModified);
+
+            CaseAssignmentRule caseAssignmentRule = new CaseAssignmentRule(Convert.ToInt32(ruleNumber), Convert.ToInt32(circuitId), countyId, courtCode, caseTypeCode, assignmentMedthod, Convert.ToDateTime(ruleBeginDate), endDate, editDate, modifiedByUserId);
+            
+            int rowsAffected = 0;
+
+            string connectionString = GetConnectionString();
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                sqlConnection.Open();
+                rowsAffected = CaseAssignmentRule.UpdateCaseAssignmentRule(caseAssignmentRule,sqlConnection);
+                //TO-DO
+                //caseAssignmentRules = CaseAssignmentRule.SearchCaseAssignmentRules(sqlConnection);
+            }
+
+            response.Result = (rowsAffected == 1) ? "success" : "failure";
+            response.Message = $"{rowsAffected} rows affected.";
+            //TO-DO
+            //response.CaseAssignmentRules = caseAssignmentRules;
+        }
+        catch (Exception e)
+        {
+            response.Result = "failure";
+            response.Message = e.Message;
+        }
+        return response;
+    }
+
+    [HttpDelete]
+    [Route("/DeleteCaseAssignmentRule")]
+    public Response DeleteCaseAssignmentRule(string ruleNumber)
+    {
+        Response response = new Response();
+        try
+        {
+            List<CaseAssignmentRule> caseAssignmentRules = new List<CaseAssignmentRule>();
+            
+            CaseAssignmentRule caseAssignmentRule = new CaseAssignmentRule();
+
+            int rowsAffected = 0;
+
+            string connectionString = GetConnectionString();
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                sqlConnection.Open();
+                rowsAffected = CaseAssignmentRule.DeleteCaseAssignmentRule(Convert.ToInt32(ruleNumber),sqlConnection);
+                //TO-DO
+                //caseAssignmentRules = CaseAssignmentRule.SearchCaseAssignmentRules(sqlConnection);
+            }
+
+            response.Result = (rowsAffected == 1) ? "success" : "failure";
+            response.Message = $"{rowsAffected} rows affected.";
+            //TO-DO
+            //response.CaseAssignmentRules = caseAssignmentRules;
+        }
+        catch (Exception e)
+        {
+            response.Result = "failure";
+            response.Message = e.Message;
+        }
+        return response;
+    }
+    
     static string GetConnectionString()
     {
         string serverName = @"AO-EGM-LA-2999\SQLEXPRESS"; //Change to the "Server Name" you see when you launch SQL Server Management Studio.
