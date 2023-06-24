@@ -4,16 +4,520 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>webapp_02</title>
+    <title>webapp_e-CAPES</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="bootstrap.min.css" rel="stylesheet">
     <link href="index.css" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon2.ico" type="image/vnd.microsoft.icon">
 </head>
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-    crossorigin="anonymous"></script>
+
+    <div class="container">
+        
+        <!-- e-COURTS BANNER -->
+        <div class="row my-header">
+            <div class="container text-center">
+                <div class="row">
+                  <div class="col">
+                    <img src="Judiciary-Logo-210x95.png" class="img-thumbnail" alt="Judiciary Logo" style="background-color: /*#476EB5*/ #05245D; border-color: #05245D; color: white; ">
+                  </div>
+                  <div class="col-8">
+                    <h1 id="heading-01" class="color-red">e-CAPES</h1>
+                    <h1 id="heading-02" class="color-red">Electronic Court Admin Plan Entry System</h1>
+                  </div>
+                  <div class="col">
+                    3 of 3
+                  </div>
+                </div>
+                <!-- SEARCH MENU DROPDOWN-->
+                <div class="row">
+                    <div class="col">
+                        (1 & 2) of 12 
+                    </div>
+                    <div class="col-8">
+                        <div class="row">
+                            <div class="col"> <!-- CIRCUIT PARAMETER -->
+                                <select id="circuit-search-parameter" class="form-select" aria-label="Default select example">
+                                    <option selected value="">Judicial Circuit</option>
+                                    <option value="1">1st </option>
+                                    <option value="2">2nd </option>
+                                    <option value="3">3rd </option>
+                                    <option value="4">4th </option>
+                                    <option value="5">5th </option>
+                                    <option value="6">6th </option>
+                                    <option value="7">7th </option>
+                                    <option value="8">8th North </option>
+                                    <option value="9">8th South </option>
+                                    <option value="10">9th East </option>
+                                    <option value="11">9th West </option>
+                                    <option value="12">10th </option>
+                                    <option value="13">11th East </option>
+                                    <option value="14">11th West </option>
+                                    <option value="15">12th </option>
+                                    <option value="16">13th </option>
+                                    <option value="17">14th </option>
+                                    <option value="18">15th </option>
+                                    <option value="19">16th </option>
+                                    <option value="20">17th </option>
+                                    <option value="21">18th East </option>
+                                    <option value="22">18th West </option>
+                                    <option value="23">19th East </option>
+                                    <option value="24">19th West </option>
+                                    <option value="25">20th </option>
+                                    <option value="26">21st </option>
+                                    <option value="27">22nd </option>
+                                    <option value="28">23rd </option>
+                                </select>
+                            </div>
+                            <div class="col"> <!-- COUNTY PARAMETER -->
+                                <select id="county-search-parameter" class="form-select" aria-label="Default select example">
+                                    <option selected value="">County</option>
+                                    <option value="1">ARKANSAS</option>
+                                    <option value="2">ASHLEY</option>
+                                    <option value="3">BAXTER</option>
+                                    <option value="4">BENTON</option>
+                                    <option value="5">BOONE</option>
+                                    <option value="6">BRADLEY</option>
+                                    <option value="7">CALHOUN</option>
+                                    <option value="8">CARROLL</option>
+                                    <option value="9">CHICOT</option>
+                                    <option value="10">CLARK</option>
+                                    <option value="11">CLAY</option>
+                                    <option value="12">CLEBURNE</option>
+                                    <option value="13">CLEVELAND</option>
+                                    <option value="14">COLUMBIA</option>
+                                    <option value="15">CONWAY</option>
+                                    <option value="16">CRAIGHEAD</option>
+                                    <option value="17">CRAWFORD</option>
+                                    <option value="18">CRITTENDEN</option>
+                                    <option value="19">CROSS</option>
+                                    <option value="20">DALLAS</option>
+                                    <option value="21">DESHA</option>
+                                    <option value="22">DREW</option>
+                                    <option value="23">FAULKNER</option>
+                                    <option value="24">FRANKLIN</option>
+                                    <option value="25">FULTON</option>
+                                    <option value="26">GARLAND</option>
+                                    <option value="27">GRANT</option>
+                                    <option value="28">GREENE</option>
+                                    <option value="29">HEMPSTEAD</option>
+                                    <option value="30">HOT SPRING</option>
+                                    <option value="31">HOWARD</option>
+                                    <option value="32">INDEPENDENCE</option>
+                                    <option value="33">IZARD</option>
+                                    <option value="34">JACKSON</option>
+                                    <option value="35">JEFFERSON</option>
+                                    <option value="36">JOHNSON</option>
+                                    <option value="37">LAFAYETTE</option>
+                                    <option value="38">LAWRENCE</option>
+                                    <option value="39">LEE</option>
+                                    <option value="40">LINCOLN</option>
+                                    <option value="41">LITTLE RIVER</option>
+                                    <option value="42">LOGAN</option>
+                                    <option value="43">LONOKE</option>
+                                    <option value="44">MADISON</option>
+                                    <option value="45">MARION</option>
+                                    <option value="46">MILLER</option>
+                                    <option value="47">MISSISSIPPI</option>
+                                    <option value="48">MONROE</option>
+                                    <option value="49">MONTGOMERY</option>
+                                    <option value="50">NEVADA</option>
+                                    <option value="51">NEWTON</option>
+                                    <option value="52">OUACHITA</option>
+                                    <option value="53">PERRY</option>
+                                    <option value="54">PHILLIPS</option>
+                                    <option value="55">PIKE</option>
+                                    <option value="56">POINSETT</option>
+                                    <option value="57">POLK</option>
+                                    <option value="58">POPE</option>
+                                    <option value="59">PRAIRIE</option>
+                                    <option value="60">PULASKI</option>
+                                    <option value="61">RANDOLPH</option>
+                                    <option value="62">ST. FRANCIS</option>
+                                    <option value="63">SALINE</option>
+                                    <option value="64">SCOTT</option>
+                                    <option value="65">SEARCY</option>
+                                    <option value="66">SEBASTIAN</option>
+                                    <option value="67">SEVIER</option>
+                                    <option value="68">SHARP</option>
+                                    <option value="69">STONE</option>
+                                    <option value="70">UNION</option>
+                                    <option value="71">VAN BUREN</option>
+                                    <option value="72">WASHINGTON</option>
+                                    <option value="73">WHITE</option>
+                                    <option value="74">WOODRUFF</option>
+                                    <option value="75">YELL</option>
+                                  </select> 
+                            </div>
+                            <div class="col"> <!-- COUNTY PARAMETER -->
+                                <select id="court-search-parameter" class="form-select" aria-label="Default select example">
+                                    <option selected value="">Court</option>
+                                    <option value="CI">CIRCUIT</option>
+                                    <option value="CO">COUNTY</option>
+                                    <option value="JV">JUVENILE</option>
+                                </select>
+                            </div>
+                            <div class="col"> <!-- CASE TYPE PARAMETER -->
+                                <select id="case-type-search-parameter" class="form-select" aria-label="Default select example">
+                                    <option selected value="">Case Type</option>
+                                    <option value="11">11-CRIMINAL CIRCUIT</option>
+                                    <option value="12">12-CIVIL CIRCUIT</option>
+                                    <option value="13">13-JUVENILE CIRCUIT</option>
+                                    <option value="14">14-DOMESTIC RELATIONS</option>
+                                    <option value="15">15-PROBATE CIRCUIT</option>
+                                    <option value="AA">AA-ANCILLARY ADMINISTRATION</option>
+                                    <option value="AD">AD-ADOPTION-PROBATE</option>
+                                    <option value="AL">AL-ALCOHOLIC COMMITMENT</option>
+                                    <option value="AN">AN-ANNULMENT</option>
+                                    <option value="AO">AO-APS ORDER OF INVESTIGATION</option>
+                                    <option value="AP">AP-ADMINISTRATIVE APPEAL</option>
+                                    <option value="AR">AR-PET TO SEAL ARREST RECORD</option>
+                                    <option value="BP">BP-BUYER PLAINTIFF</option>
+                                    <option value="CD">CD-CONDEMNATION/EMINENT DOMAIN</option>
+                                    <option value="CF">CF-PROPERTY FORFEITURE</option>
+                                    <option value="CP">CP-CONSERVATORSHIP</option>
+                                    <option value="CS">CS-CUSTODY</option>
+                                    <option value="CT">CT-CONTEMPT-DOMESTIC RELATIONS</option>
+                                    <option value="CV">CV-CIVIL COMMITMENT</option>
+                                    <option value="DA">DA-ORDER OF PROTECTION</option>
+                                    <option value="DC">DC-NARCOTIC COMMITMENT</option>
+                                    <option value="DE">DE-DECEDENT ESTATE ADMINISTRATION</option>
+                                    <option value="DF">DF-SLANDER/LIBEL/DEFAMATION</option>
+                                    <option value="DI">DI-FELONY</option>
+                                    <option value="DN">DN-DEPENDENT/NEGLECT</option>
+                                    <option value="DO">DO-SELLER PLAINTIFF (DEBT COLL.)</option>
+                                    <option value="DV">DV-DIVORCE</option>
+                                    <option value="DX">DX-DEPENDENT (NO FAULT)</option>
+                                    <option value="EJ">EJ-EXTENDED JUVENILE JURISDICTION</option>
+                                    <option value="EL">EL-ELECTION</option>
+                                    <option value="EM">EM-EMPLOYMENT DISCRIMINATION</option>
+                                    <option value="EO">EO-EMPLOYMENT OTHER</option>
+                                    <option value="EX">EX-EXTRADITION</option>
+                                    <option value="FC">FC-MORTGAGE FORECLOSURE</option>
+                                    <option value="FJ">FJ-FOREIGN JUDGMENT-DR</option>
+                                    <option value="FR">FR-FRAUD</option>
+                                    <option value="FS">FS-FAMILY IN NEED OF SERVICES</option>
+                                    <option value="FV">FV-FOREIGN JUDGMENT-CIVIL</option>
+                                    <option value="GA">GA-GUARDIANSHIP OF AN ADULT</option>
+                                    <option value="GJ">GJ-GUARDIANSHIP OF A JUVENILE</option>
+                                    <option value="IJ">IJ-INJUNCTION</option>
+                                    <option value="IT">IT-INTENTIONAL TORT</option>
+                                    <option value="JA">JA-JUVENILE ADOPTION</option>
+                                    <option value="JD">JD-DELINQUENCY</option>
+                                    <option value="LP">LP-PREMISES LIABILITY</option>
+                                    <option value="MA">MA-MISDEMEANOR APPEAL</option>
+                                    <option value="MI">MI-MISDEMEANOR</option>
+                                    <option value="MO">MO-MALPRACTICE - OTHER</option>
+                                    <option value="MP">MP-MALPRACTICE-MEDICAL</option>
+                                    <option value="NM">NM-AUTOMOBILE TORT</option>
+                                    <option value="OC">OC-CONTRACT - OTHER</option>
+                                    <option value="OD">OD-TORT-OTHER</option>
+                                    <option value="OI">OI-JUV ORDER OF INVESTIGATION</option>
+                                    <option value="OM">OM-CIVIL - OTHER</option>
+                                    <option value="OP">OP-PROBATE - OTHER</option>
+                                    <option value="PC">PC-ADULT PROTECTIVE CUSTODY</option>
+                                    <option value="PL">PL-PRODUCT LIABILITY</option>
+                                    <option value="PT">PT-PATERNITY</option>
+                                    <option value="QT">QT-REAL PROPERTY - OTHER</option>
+                                    <option value="SE">SE-SMALL ESTATE</option>
+                                    <option value="SM">SM-SEPARATE MAINTENANCE</option>
+                                    <option value="SS">SS-SUPPORT - OCSE</option>
+                                    <option value="ST">ST-SUPPORT - PRIVATE (NON OCSE)</option>
+                                    <option value="SU">SU-SUPPORT-UIFSA</option>
+                                    <option value="TA">TA-TRUST ADMINISTRATION</option>
+                                    <option value="TS">TS-PET TRM SXOFF REGREQ OOST JMNT</option>
+                                    <option value="UD">UD-LANDLORD/TENANT UNLAWFULDETAIN</option>
+                                    <option value="UO">UO-LANDLORD/TENANT OTHER</option>
+                                    <option value="VI">VI-VISITATION</option>
+                                    <option value="WT">WT-WRITS</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <button id="button-search" type="button" class="btn btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                            </svg>
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <!--Case Assignment Rules-->
+        <div id="case-assignment-rules" class="row">
+            <div class="col-12 page-title">
+                <h3>Case Type Assignment Rules</h3>
+            </div>
+            <div class="col col-12 col-case-assignment-rule-table">
+                <div id="case-assignment-rule-table">
+                    <table class="table table-dark table-striped table-bordered table-sm">
+                        <thead>
+                            <tr>
+                                <th id="record-selector-header" scope="col" class="select-check-box">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square-fill" viewBox="0 0 16 16">
+                                        <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
+                                    </svg>
+                                    Select
+                                </th>
+                                <th scope="col">Rule Number</th> <!-- TO D0 => try to be able to remove this Column  -->
+                                <th scope="col">Circuit Code</th>
+                                <th scope="col">County Code</th>
+                                <th scope="col">Court Code</th>
+                                <th scope="col">Case Type Code</th>
+                                <th scope="col">Assignment Method</th>
+                                <th scope="col">Begin Date</th>
+                                <th scope="col">End Date</th>
+                                <th id="update-delete-column-header" scope="col" class="button-column">Update/Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="rule-num-1000-check-box">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        </label>
+                                    </div>
+                                </td>
+                                <th id="rule-num-1001-rule-number" scope="row">1000</th>
+                                <td id="rule-num-1000-circuit-id">28</td>
+                                <td id="rule-num-1000-county-code">43</td>
+                                <td id="rule-num-1000-court-code">CI</td>
+                                <td id="rule-num-1000-case-type-code">14</td>
+                                <td id="rule-num-1000-assignment-method">W</td>
+                                <td id="rule-num-1000-begin-date">2013-12-06</td>
+                                <td id="rule-num-1000-end-date"></td>
+                                <td>
+                                    <div class="row g-2">
+                                        <div class="col-auto"> <!-- HOW TO CONFIGURE LIKE data-employee-id="1"-->
+                                            <button type="button" data-employee-id="1" class="btn btn-outline-warning btn-sm btn-case-assignment-rule-table-update">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
+                                                    <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z"/>
+                                                </svg>
+                                            Update
+                                            </button>
+                                        </div>
+                                        <div class="col-auto">
+                                            <button id="" type="button" data-employee-id="1" class="btn btn-outline-danger btn-sm btn-case-assignment-rule-table-delete">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                                                </svg>
+                                            Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="rule-num-1001-check-box">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        </label>
+                                    </div>
+                                </td>
+                                <th id="rule-num-1001-rule-number"scope="row">1001</th>
+                                <td id="rule-num-1001-circuit-id">28</td>
+                                <td id="rule-num-1001-county-code">43</td>
+                                <td id="rule-num-1001-court-code">CI</td>
+                                <td id="rule-num-1001-case-type-code">12</td>
+                                <td id="rule-num-1001-assignment-method">W</td>
+                                <td id="rule-num-1001-begin-date">2017-01-01</td>
+                                <td id="rule-num-1001-end-date"></td>
+                                <td>
+                                    <div class="row g-2">
+                                        <div class="col-auto">
+                                            <button type="button" data-employee-id="1" class="btn btn-outline-warning btn-sm btn-case-assignment-rule-table-update">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
+                                                    <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z"/>
+                                                </svg>
+                                            Update
+                                            </button>
+                                        </div>
+                                        <div class="col-auto">
+                                            <button id="" type="button" data-employee-id="1" class="btn btn-outline-danger btn-sm btn-case-assignment-rule-table-delete">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                                                </svg>
+                                            Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--Judge Distribution Assignment-->
+        <div id="judge-distribution-rules" class="row">
+            <div class="col-12 page-title">
+                <!--Judge Distribution Assignment & Feedback Headers-->
+                <div class="row">
+                    <div class="col-3">
+                        <h3>S.C. Feedback</h3>
+                    </div>
+                    <div class="col-9">
+                        <h3>Judge Distribution Assignments</h3>
+                    </div>
+                </div>
+                <!--Judge Distribution Assignment & Feedback Tables-->
+                <div class="row">
+                    <div class="col-3">
+                        <div class="col col-12 col-sc-judge-dist_submission-feedback-table">
+                            <div id="sc-judge-dist_submission-feedback-table">
+                                <table class="table table-dark table-striped table-bordered table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th id="rule-num-1001-judge-id-submission-approved" scope="col">Approved</th>
+                                            <th id="rule-num-1001-judge-id-submission-comments" scope="col">Comments</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-9">
+                        <div class="col col-12 col-sc-judge-dist_submission-feedback-table">
+                            <div id="sc-judge-dist_submission-feedback-table">
+                                <table class="table table-dark table-striped table-bordered table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th id="record-selector-header"class="select-check-box" scope="col">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square-fill" viewBox="0 0 16 16">
+                                                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
+                                                </svg>
+                                                Select
+                                            </th>
+                                            <th scope="col">Rule Number</th>
+                                            <th scope="col">Judge ID</th> 
+                                            <th scope="col">Judge Name</th>
+                                            <th scope="col">Assignment %</th>
+                                            <th scope="col">Priority Level</th>
+                                            <th class="button-column" scope="col">Update/Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td id="rule-num-1001-judge-id-c23d01-check-box">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td id="rule-num-1001-judge-id-c23d01-rule-number" scope="col">1001</td>
+                                            <td id="rule-num-1001-judge-id-c23d01-judge-id" scope="col">C23D01</td> 
+                                            <td id="rule-num-1001-judge-id-c23d01-judge-name" scope="col">BARBARA ELMORE</td>
+                                            <td id="rule-num-1001-judge-id-c23d01-%" scope="col">0</td>
+                                            <td id="rule-num-1001-judge-id-c23d01-priority" scope="col">2</td>
+                                            <td>
+                                                <div class="row g-2">
+                                                    <div class="col-auto">
+                                                        <button type="button" data-employee-id="1" class="btn btn-outline-warning btn-sm btn-judge-distribution-assignmen-table-update">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
+                                                                <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z"/>
+                                                            </svg>
+                                                        Update
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <button id="" type="button" data-employee-id="1" class="btn btn-outline-danger btn-sm btn-judge-distribution-assignmen-table-delete">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                                                            </svg>
+                                                        Delete
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td id="rule-num-1001-judge-id-c23d02-check-box">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td id="rule-num-1001-judge-id-c23d02-rule-number" scope="col">1001</td>
+                                            <td id="rule-num-1001-judge-id-c23d02-judge-id" scope="col">C23D02</td> 
+                                            <td id="rule-num-1001-judge-id-c23d02-judge-name" scope="col">JASON PARKER</td>
+                                            <td id="rule-num-1001-judge-id-c23d02-%" scope="col">0</td>
+                                            <td id="rule-num-1001-judge-id-c23d02-priority" scope="col">2</td>
+                                            <td>
+                                                <div class="row g-2">
+                                                    <div class="col-auto">
+                                                        <button type="button" data-employee-id="1" class="btn btn-outline-warning btn-sm btn-judge-distribution-assignmen-table-update">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
+                                                                <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z"/>
+                                                            </svg>
+                                                        Update
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <button id="" type="button" data-employee-id="1" class="btn btn-outline-danger btn-sm btn-judge-distribution-assignmen-table-delete">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                                                            </svg>
+                                                        Delete
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td id="rule-num-1001-judge-id-c23d02-check-box">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td id="rule-num-1001-judge-id-c23d02-rule-number" scope="col">1001</td>
+                                            <td id="rule-num-1001-judge-id-c23d02-judge-id" scope="col">C23D03</td> 
+                                            <td id="rule-num-1001-judge-id-c23d02-judge-name" scope="col">PARKER HUCKABEE</td>
+                                            <td id="rule-num-1001-judge-id-c23d02-%" scope="col">100</td>
+                                            <td id="rule-num-1001-judge-id-c23d02-priority" scope="col">1</td>
+                                            <td>
+                                                <div class="row g-2">
+                                                    <div class="col-auto">
+                                                        <button type="button" data-employee-id="1" class="btn btn-outline-warning btn-sm btn-judge-distribution-assignmen-table-update">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
+                                                                <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z"/>
+                                                            </svg>
+                                                        Update
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <button id="" type="button" data-employee-id="1" class="btn btn-outline-danger btn-sm btn-judge-distribution-assignmen-table-delete">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                                                            </svg>
+                                                        Delete
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="bootstrap.bundle.min.js"></script>
     <script src="index.js"></script>
 </body>
 

@@ -1,39 +1,32 @@
-body {
-    background-color: lavender;
+.color-red {
+    color: red;
 }
 
-
-.my-header,
-.my-footer {
-    background-color: darkgray;
-    text-align: center;
-    color: white;
+.color-orange {
+    color: orange;
 }
 
-.col-employee-table {
-    background-color: white;
-    padding-top: 20px;
+.color-yellow {
+    color: yellow;
 }
 
-.my-right {
-    background-color: lightgray;
-    padding-top: 20px;
+.color-green {
+    color: green;
 }
 
-h4 {
-    text-align: center;
+.color-blue {
+    color: blue;
 }
 
-form {
-    padding-left: 10px;
-    padding-right: 10px;
+.color-indigo {
+    color: indigo;
 }
 
-.button-column {
-    width: 160px;
+.color-violet {
+    color: violet;
 }
-
-.page-title {
-    background-color: lightgray;
-    text-align: center;
+.my-header{
+    background-color: /*#476EB5*/ #05245D;
+    border-color: #0e3e95;
+    color: white;    
 }
