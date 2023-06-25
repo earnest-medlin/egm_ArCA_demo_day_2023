@@ -30,14 +30,14 @@
                   </div>
                 </div>
                 <!-- SEARCH MENU DROPDOWN-->
-                <div class="row">
+                <div class="row align-items-start">
                     <div class="col">
                         (1 & 2) of 12 
                     </div>
                     <div class="col-8">
-                        <div class="row">
+                        <div class="row justify-content-center align-items-start">
                             <div class="col"> <!-- CIRCUIT PARAMETER -->
-                                <select id="circuit-search-parameter" class="form-select" aria-label="Default select example">
+                                <select id="circuit-search-parameter" class="form-select-sm text-center" aria-label="Default select example">
                                     <option selected value="">Judicial Circuit</option>
                                     <option value="1">1st </option>
                                     <option value="2">2nd </option>
@@ -70,7 +70,7 @@
                                 </select>
                             </div>
                             <div class="col"> <!-- COUNTY PARAMETER -->
-                                <select id="county-search-parameter" class="form-select" aria-label="Default select example">
+                                <select id="county-search-parameter" class="form-select-sm text-center" aria-label="Default select example">
                                     <option selected value="">County</option>
                                     <option value="1">ARKANSAS</option>
                                     <option value="2">ASHLEY</option>
@@ -150,7 +150,7 @@
                                   </select> 
                             </div>
                             <div class="col"> <!-- COUNTY PARAMETER -->
-                                <select id="court-search-parameter" class="form-select" aria-label="Default select example">
+                                <select id="court-search-parameter" class="form-select-sm text-center" aria-label="Default select example">
                                     <option selected value="">Court</option>
                                     <option value="CI">CIRCUIT</option>
                                     <option value="CO">COUNTY</option>
@@ -158,7 +158,7 @@
                                 </select>
                             </div>
                             <div class="col"> <!-- CASE TYPE PARAMETER -->
-                                <select id="case-type-search-parameter" class="form-select" aria-label="Default select example">
+                                <select id="case-type-search-parameter" class="form-select-sm text-center" aria-label="Default select example">
                                     <option selected value="">Case Type</option>
                                     <option value="11">11-CRIMINAL CIRCUIT</option>
                                     <option value="12">12-CIVIL CIRCUIT</option>
@@ -248,108 +248,142 @@
         </div>
         <!--Case Assignment Rules-->
         <div id="case-assignment-rules" class="row">
-            <div class="col-12 page-title">
-                <h3>Case Type Assignment Rules</h3>
+            <!--Case Assignment Rule Header-->
+            <div class="container text-left">
+                <div class="col-12 page-title">
+                    <div class="row align-items-center">
+                        <div class="col-3">
+                            <button id="case-assignment-rule-show-insert-form-button" type="button" class="btn btn-secondary case-assignment-rule-show-insert-form-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
+                                </svg>
+                                Add new Rule
+                            </button>
+                        </div>
+                        <div class="col-6 text-center">
+                            <h3>Case Type Assignment Rules</h3>    
+                        </div>
+                        <div class="col-3">
+                            
+                        </div>
+                    </div>
+                </div>
             </div>
+            <!--Case Assignment Rule Table Insert-->
+            <div id="case-assignment-rule-table-insert" class="row">
+                <div id="case-assignment-rule-insert-form" class="row visually-hidden">
+                    <h4>Insert New Assignment Rule</h4>
+                    <form>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label for="text-insert-circuit-id" class="form-label">Circuit Code</label>
+                                <input id="text-insert-circuit-id" type="text" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label for="text-insert-county-id" class="form-label">County Id</label>
+                                <input id="text-insert-county-id" type="text" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label for="text-insert-court-code" class="form-label">Court Code</label>
+                                <input id="text-insert-court-code" type="text" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label for="text-insert-case-type-code" class="form-label">Case Type Code</label>
+                                <input id="text-insert-case-type-code" type="text" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label for="text-insert-assignment-method" class="form-label">Assignment Method</label>
+                                <input id="text-insert-assignment-method" type="text" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label for="text-insert-begin-date" class="form-label">Begin date:</label>
+                                <input id="text-insert-begin-date" type="date" class="form-control" name="begin-date" value="2018-07-22" min="2000-01-01" max="2500-12-31">
+                            </div>       
+                        </div>
+                        <div class="row g-2 align-items-start justify-content-end">
+                            <div class="col-auto">
+                                <button id="case-assignment-rule-insert-button" type="button" data-employee-id="1" class="btn btn-outline-warning btn-sm case-assignment-rule-insert-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
+                                        <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z"/>
+                                    </svg>
+                                    Insert
+                                </button>
+                            </div>
+                            <div class="col-auto">
+                                <button id="case-assignment-rule-cancel-insert-button" type="button" data-employee-id="1" class="btn btn-outline-success btn-sm case-assignment-rule-cancel-insert-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-octagon-fill" viewBox="0 0 16 16">
+                                        <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm-6.106 4.5L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
+                                    </svg>
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--Case Assignment Rule Table-->
             <div class="col col-12 col-case-assignment-rule-table">
                 <div id="case-assignment-rule-table">
-                    <table class="table table-dark table-striped table-bordered table-sm">
-                        <thead>
-                            <tr>
-                                <th id="record-selector-header" scope="col" class="select-check-box">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square-fill" viewBox="0 0 16 16">
-                                        <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
+                </div>
+            </div>
+            <!--Case Assignment Rule Table Update-->
+            <div id="case-assignment-rule-table-update" class="row">
+                <div id="case-assignment-rule-update-form" class="row visually-hidden">
+                    <h4>Update Assignment Rule</h4>
+                    <form>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label for="text-update-rule-number" class="form-label">Rule #</label>
+                                <input id="text-update-rule-number" type="text" class="form-control">   
+                            </div>
+                            <div class="col">
+                                <label for="text-update-circuit-id" class="form-label">Circuit Id</label>
+                                <input id="text-update-circuit-id" type="text" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label for="text-update-county-id" class="form-label">County Code</label>
+                                <input id="text-update-county-id" type="text" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label for="text-update-court-code" class="form-label">Court Code</label>
+                                <input id="text-update-court-code" type="text" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label for="text-update-case-type-code" class="form-label">Case Type Code</label>
+                                <input id="text-update-case-type-code" type="text" class="form-control">
+                            </div>
+                            <div class="col-2">
+                                <label for="text-update-assignment-method" class="form-label">Assignment Method</label>
+                                <input id="text-update-assignment-method" type="text" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label for="text-update-begin-date" class="form-label">Begin date:</label>
+                                <input id="text-update-begin-date" type="date" class="form-control" name="begin-date" value="" min="2000-01-01" max="2500-12-31">
+                            </div>
+                            <div class="col">
+                                <label for="text-update-end-date" class="form-label">End date:</label>
+                                <input id="text-update-end-date" type="date" class="form-control" name="end-date" value="" min="2000-01-01" max="2500-12-31">
+                            </div>        
+                        </div>
+                        <div class="row g-2 justify-content-end">
+                            <div class="col-auto">
+                                <button id="case-assignment-rule-update-button" type="button" class="btn btn-outline-warning btn-sm case-assignment-rule-update-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
+                                        <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z"/>
                                     </svg>
-                                    Select
-                                </th>
-                                <th scope="col">Rule Number</th> <!-- TO D0 => try to be able to remove this Column  -->
-                                <th scope="col">Circuit Code</th>
-                                <th scope="col">County Code</th>
-                                <th scope="col">Court Code</th>
-                                <th scope="col">Case Type Code</th>
-                                <th scope="col">Assignment Method</th>
-                                <th scope="col">Begin Date</th>
-                                <th scope="col">End Date</th>
-                                <th id="update-delete-column-header" scope="col" class="button-column">Update/Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td id="rule-num-1000-check-box">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                        </label>
-                                    </div>
-                                </td>
-                                <th id="rule-num-1001-rule-number" scope="row">1000</th>
-                                <td id="rule-num-1000-circuit-id">28</td>
-                                <td id="rule-num-1000-county-code">43</td>
-                                <td id="rule-num-1000-court-code">CI</td>
-                                <td id="rule-num-1000-case-type-code">14</td>
-                                <td id="rule-num-1000-assignment-method">W</td>
-                                <td id="rule-num-1000-begin-date">2013-12-06</td>
-                                <td id="rule-num-1000-end-date"></td>
-                                <td>
-                                    <div class="row g-2">
-                                        <div class="col-auto"> <!-- HOW TO CONFIGURE LIKE data-employee-id="1"-->
-                                            <button type="button" data-employee-id="1" class="btn btn-outline-warning btn-sm btn-case-assignment-rule-table-update">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
-                                                    <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z"/>
-                                                </svg>
-                                            Update
-                                            </button>
-                                        </div>
-                                        <div class="col-auto">
-                                            <button id="" type="button" data-employee-id="1" class="btn btn-outline-danger btn-sm btn-case-assignment-rule-table-delete">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
-                                                </svg>
-                                            Delete
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td id="rule-num-1001-check-box">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                        </label>
-                                    </div>
-                                </td>
-                                <th id="rule-num-1001-rule-number"scope="row">1001</th>
-                                <td id="rule-num-1001-circuit-id">28</td>
-                                <td id="rule-num-1001-county-code">43</td>
-                                <td id="rule-num-1001-court-code">CI</td>
-                                <td id="rule-num-1001-case-type-code">12</td>
-                                <td id="rule-num-1001-assignment-method">W</td>
-                                <td id="rule-num-1001-begin-date">2017-01-01</td>
-                                <td id="rule-num-1001-end-date"></td>
-                                <td>
-                                    <div class="row g-2">
-                                        <div class="col-auto">
-                                            <button type="button" data-employee-id="1" class="btn btn-outline-warning btn-sm btn-case-assignment-rule-table-update">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
-                                                    <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z"/>
-                                                </svg>
-                                            Update
-                                            </button>
-                                        </div>
-                                        <div class="col-auto">
-                                            <button id="" type="button" data-employee-id="1" class="btn btn-outline-danger btn-sm btn-case-assignment-rule-table-delete">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
-                                                </svg>
-                                            Delete
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                    Update
+                                </button>
+                            </div>
+                            <div class="col-auto">
+                                <button id="case-assignment-rule-cancel-update-button" type="button" data-employee-id="1" class="btn btn-outline-success btn-sm case-assignment-rule-cancel-update-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-octagon-fill" viewBox="0 0 16 16">
+                                        <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm-6.106 4.5L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
+                                    </svg>
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -394,13 +428,12 @@
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square-fill" viewBox="0 0 16 16">
                                                     <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
                                                 </svg>
-                                                Select
                                             </th>
-                                            <th scope="col">Rule Number</th>
-                                            <th scope="col">Judge ID</th> 
-                                            <th scope="col">Judge Name</th>
+                                            <th scope="col">Rule #</th>
+                                            <th scope="col">ID</th> 
+                                            <th scope="col">Name</th>
                                             <th scope="col">Assignment %</th>
-                                            <th scope="col">Priority Level</th>
+                                            <th scope="col">Priority LVL</th>
                                             <th class="button-column" scope="col">Update/Delete</th>
                                         </tr>
                                     </thead>
