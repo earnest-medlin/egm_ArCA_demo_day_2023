@@ -386,6 +386,66 @@
                     </form>
                 </div>
             </div>
+            <!--Case Assignment Rule Table Delete-->
+            <div id="case-assignment-rule-table-delete" class="row">
+                <div id="case-assignment-rule-delete-form" class="row visually-hidden">
+                    <h4>Delete Assignment Rule</h4>
+                    <form>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label for="text-delete-rule-number" class="form-label">Rule #</label>
+                                <input id="text-delete-rule-number" type="text" class="form-control">   
+                            </div>
+                            <div class="col">
+                                <label for="text-delete-circuit-id" class="form-label">Circuit Id</label>
+                                <input id="text-delete-circuit-id" type="text" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label for="text-delete-county-id" class="form-label">County Code</label>
+                                <input id="text-delete-county-id" type="text" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label for="text-delete-court-code" class="form-label">Court Code</label>
+                                <input id="text-delete-court-code" type="text" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label for="text-delete-case-type-code" class="form-label">Case Type Code</label>
+                                <input id="text-delete-case-type-code" type="text" class="form-control">
+                            </div>
+                            <div class="col-2">
+                                <label for="text-delete-assignment-method" class="form-label">Assignment Method</label>
+                                <input id="text-delete-assignment-method" type="text" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label for="text-delete-begin-date" class="form-label">Begin date:</label>
+                                <input id="text-delete-begin-date" type="date" class="form-control" name="begin-date" value="" min="2000-01-01" max="2500-12-31">
+                            </div>
+                            <div class="col">
+                                <label for="text-delete-end-date" class="form-label">End date:</label>
+                                <input id="text-delete-end-date" type="date" class="form-control" name="end-date" value="" min="2000-01-01" max="2500-12-31">
+                            </div>        
+                        </div>
+                        <div class="row g-2 justify-content-end">
+                            <div class="col-auto">
+                                <button id="case-assignment-rule-delete-button" type="button" data-employee-id="1" class="btn btn-outline-danger btn-sm btn-sm case-assignment-rule-delete-button">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+										<path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                                    </svg>
+                                    Delete
+                                </button>
+                            </div>
+                            <div class="col-auto">
+                                <button id="case-assignment-rule-cancel-delete-button" type="button" data-employee-id="1" class="btn btn-outline-success btn-sm case-assignment-rule-cancel-delete-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-octagon-fill" viewBox="0 0 16 16">
+                                        <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm-6.106 4.5L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
+                                    </svg>
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
         <!--Judge Distribution Assignment-->
         <div id="judge-distribution-rules" class="row">
@@ -466,7 +526,7 @@
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
                                                                 <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
                                                             </svg>
-                                                        Delete
+                                                            Delete
                                                         </button>
                                                     </div>
                                                 </div>

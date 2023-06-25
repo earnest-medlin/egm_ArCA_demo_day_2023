@@ -56,7 +56,7 @@ public class CaseAssignmentRuleController : ControllerBase
 
     [HttpPost]
     [Route("/InsertCaseAssignmentRule")]
-    public Response InsertCaseAssignmentRule(string circuitId, string countyId, string courtCode, string caseTypeCode, string assignmentMedthod, string ruleBeginDate, string? dateLastModified, string modifiedByUserId)
+    public Response InsertCaseAssignmentRule(string circuitId, string countyId, string courtCode, string caseTypeCode, string assignmentMethod, string ruleBeginDate, string? dateLastModified, string modifiedByUserId)
     {
         //string? ruleEndDate
         Response response = new Response();
@@ -66,7 +66,7 @@ public class CaseAssignmentRuleController : ControllerBase
 
             DateTime? editDate = dateLastModified == null ? null : Convert.ToDateTime(dateLastModified);
 
-            CaseAssignmentRule caseAssignmentRule = new CaseAssignmentRule(Convert.ToInt32(circuitId), countyId, courtCode, caseTypeCode, assignmentMedthod, Convert.ToDateTime(ruleBeginDate), editDate, modifiedByUserId);
+            CaseAssignmentRule caseAssignmentRule = new CaseAssignmentRule(Convert.ToInt32(circuitId), countyId, courtCode, caseTypeCode, assignmentMethod, Convert.ToDateTime(ruleBeginDate), editDate, modifiedByUserId);
 
             int rowsAffected = 0;
 
@@ -95,7 +95,7 @@ public class CaseAssignmentRuleController : ControllerBase
 
     [HttpPut]
     [Route("/UpdateCaseAssignmentRule")]
-    public Response UpdateCaseAssignmentRule(string ruleNumber, string circuitId, string countyId, string courtCode, string caseTypeCode, string assignmentMedthod, string ruleBeginDate, string? ruleEndDate, string? dateLastModified, string modifiedByUserId)
+    public Response UpdateCaseAssignmentRule(string ruleNumber, string circuitId, string countyId, string courtCode, string caseTypeCode, string assignmentMethod, string ruleBeginDate, string? ruleEndDate, string? dateLastModified, string modifiedByUserId)
     {
         Response response = new Response();
         try
@@ -105,7 +105,7 @@ public class CaseAssignmentRuleController : ControllerBase
             DateTime? endDate = ruleEndDate == null ? null : Convert.ToDateTime(ruleEndDate);
             DateTime? editDate = dateLastModified == null ? null : Convert.ToDateTime(dateLastModified);
 
-            CaseAssignmentRule caseAssignmentRule = new CaseAssignmentRule(Convert.ToInt32(ruleNumber), Convert.ToInt32(circuitId), countyId, courtCode, caseTypeCode, assignmentMedthod, Convert.ToDateTime(ruleBeginDate), endDate, editDate, modifiedByUserId);
+            CaseAssignmentRule caseAssignmentRule = new CaseAssignmentRule(Convert.ToInt32(ruleNumber), Convert.ToInt32(circuitId), countyId, courtCode, caseTypeCode, assignmentMethod, Convert.ToDateTime(ruleBeginDate), endDate, editDate, modifiedByUserId);
             
             int rowsAffected = 0;
 

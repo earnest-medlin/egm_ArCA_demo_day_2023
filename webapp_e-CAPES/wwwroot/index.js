@@ -17,23 +17,30 @@ var buttonCaseAssignmentRuleUpdate = document.getElementById("case-assignment-ru
 var buttonCaseAssignmentRuleCanelUpdate = document.getElementById("case-assignment-rule-cancel-update-button");
 
 var buttonCaseAssignmentRuleShowInsertForm = document.getElementById("case-assignment-rule-show-insert-form-button");
-//var buttonCaseAssignmentRuleInsert = document.getElementById("case-assignment-rule-insert-button");
+var buttonCaseAssignmentRuleInsert = document.getElementById("case-assignment-rule-insert-button");
 var buttonCaseAssignmentRuleInsertCancel = document.getElementById("case-assignment-rule-cancel-insert-button");
 
+var buttonCaseAssignmentRuleDelete = document.getElementById("case-assignment-rule-delete-button");
+var buttonCaseAssignmentRuleDeleteCancel = document.getElementById("case-assignment-rule-cancel-delete-button");
 
 
-//Add event listeners
+
+//Event listeners
 buttonSearch.addEventListener("click", searchCaseAssignmentRules);
 
 buttonCaseAssignmentRuleUpdate.addEventListener("click", updateCaseAssignmentRule);
 buttonCaseAssignmentRuleCanelUpdate.addEventListener("click", resetCaseAssignmentRuleUpdateForm);
 
 buttonCaseAssignmentRuleShowInsertForm.addEventListener("click", showInsertForm);
-//buttonCaseAssignmentRuleInsert.addEventListener("click", insertCaseAssignmentRule);
-buttonCaseAssignmentRuleInsertCancel.addEventListener("click", insertCaseAssignmentRuleCancel);
+buttonCaseAssignmentRuleInsert.addEventListener("click", insertCaseAssignmentRule);
+buttonCaseAssignmentRuleInsertCancel.addEventListener("click", resetCaseAssignmentRuleInsertForm);
+
+buttonCaseAssignmentRuleDelete.addEventListener("click", handCaseAssignmentRuleButtonDeleteClick);
+buttonCaseAssignmentRuleDeleteCancel.addEventListener("click", resetCaseAssignmentRuleDeleteForm);
 
 //Functions
 
+/* SEARCH FUNCTIONS --BEGIN*/
 function searchCaseAssignmentRules() {
 
     var url = "http://localhost:5296/SearchCaseAssignmentRules?circuitIdSearch=" + circuitParameter.value + "&countyIdSearch=" + countyParameter.value + "&courtCodeSearch=" + courtParameter.value + "&caseTypeCodeSearch=" + caseTypeParameter.value;
@@ -107,15 +114,15 @@ function showCaseAssignmentRules(caseAssignmentRules) {
         var updateButton = updateButtons[i];
         updateButton.addEventListener("click", handleCaseAssignmentRuleTableUpdateClick);
     }
-    /*
-    var deleteButtons = document.getElementsByClassName("btn-caseAssignmentRule-table-delete");
+    
+    var deleteButtons = document.getElementsByClassName("btn-case-assignment-rule-table-delete");
 
     for (var i = 0; i < deleteButtons.length; i++) {
         var deleteButton = deleteButtons[i];
-        deleteButton.addEventListener("click", handleEmployeeTableDeleteClick);
+        deleteButton.addEventListener("click", handleCaseAssignmentRuleTableDeleteClick);
     }
-    */
 }
+/* SEARCH FUNCTIONS --END*/
 
 /* UPDATE FUNCTIONS -- BEGIN*/
 function handleCaseAssignmentRuleTableUpdateClick(e) {
@@ -194,8 +201,7 @@ function updateCaseAssignmentRule() {
         var endDate = ""; 
     }
 
-	//var url = "http://localhost:5296/UpdateCaseAssignmentRule?ruleNumber=" + textRuleNumber.value + "&circuitId=" + textCircuitId.value + "&countyId=" + textCountyId.value+ "&courtCode=" + textCourtCode.value + "&caseTypeCode=" + textCaseTypeCode.value + "&assignmentMedthod=" + textAssignmentMethod.value + "&ruleBeginDate=" + textBeginDate.value + "&modifiedByUserId=" +textModifiedByUserId;
-    var url = 'http://localhost:5296/UpdateCaseAssignmentRule?ruleNumber=' + textRuleNumber.value + '&circuitId=' + textCircuitId.value + '&countyId=' + textCountyId.value+ '&courtCode=' + textCourtCode.value + '&caseTypeCode=' + textCaseTypeCode.value + '&assignmentMedthod=' + textAssignmentMethod.value + '&ruleBeginDate=' + textBeginDate.value + endDate + '&modifiedByUserId=' +textModifiedByUserId;
+	var url = 'http://localhost:5296/UpdateCaseAssignmentRule?ruleNumber=' + textRuleNumber.value + '&circuitId=' + textCircuitId.value + '&countyId=' + textCountyId.value+ '&courtCode=' + textCourtCode.value + '&caseTypeCode=' + textCaseTypeCode.value + '&assignmentMethod=' + textAssignmentMethod.value + '&ruleBeginDate=' + textBeginDate.value + endDate + '&modifiedByUserId=' +textModifiedByUserId;
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = doAfterUpdateCaseAssignmentRule;
 	xhr.open("PUT", url);
@@ -273,10 +279,44 @@ function showInsertForm() {
     textBeginDate.value = getCurrentDate();
 }
 
-function insertCaseAssignmentRuleCancel() {
-    resetCaseAssignmentRuleInsertForm();
-    
-    buttonCaseAssignmentRuleShowInsertForm.classList.remove("visually-hidden");
+function insertCaseAssignmentRule() {
+
+    var textCircuitId = document.getElementById("text-insert-circuit-id");
+	var textCountyId = document.getElementById("text-insert-county-id");
+	var textCourtCode = document.getElementById("text-insert-court-code");
+	var textCaseTypeCode = document.getElementById("text-insert-case-type-code");
+	var textAssignmentMethod = document.getElementById("text-insert-assignment-method");
+	var textBeginDate = document.getElementById("text-insert-begin-date");
+	var textModifiedByUserId = "DemoDayUser1";
+
+        var url = "http://localhost:5296/InsertCaseAssignmentRule?circuitId=" + textCircuitId.value + "&countyId=" + textCountyId.value + "&courtCode=" + textCourtCode.value + "&caseTypeCode=" + textCaseTypeCode.value + "&assignmentMethod=" + textAssignmentMethod.value + "&ruleBeginDate=" +textBeginDate.value +"&modifiedByUserId=" + textModifiedByUserId;
+
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = doAfterInsertCaseAssignmentRule;
+        xhr.open("POST", url);
+        xhr.send("POST");
+
+        function doAfterInsertCaseAssignmentRule() {
+            var DONE = 4; // readyState 4 means the request is done.
+            var OK = 200; // status 200 is a successful return.
+            if (xhr.readyState === DONE) {
+                if (xhr.status === OK) {
+
+                    var response = JSON.parse(xhr.responseText);
+
+                    if (response.result === "success") {
+						alert(response.message)
+                        //showEmployees(response.employees);
+                    } else {
+                        alert("API Error: " + response.message);
+                    }
+                } else {
+                    alert("Server Error: " + xhr.status + " " + xhr.statusText);
+                }
+            }
+        }
+		
+		resetCaseAssignmentRuleInsertForm();
 }
 
 function resetCaseAssignmentRuleInsertForm(){
@@ -289,6 +329,7 @@ function resetCaseAssignmentRuleInsertForm(){
 	
 	var caseAssignmentRuleInsertForm = document.getElementById("case-assignment-rule-insert-form");
 	caseAssignmentRuleInsertForm.classList.add("visually-hidden");
+    buttonCaseAssignmentRuleShowInsertForm.classList.remove("visually-hidden");
 	
 	textCircuitId.value = "";
 	textCountyId.value = "";
@@ -297,9 +338,107 @@ function resetCaseAssignmentRuleInsertForm(){
 	textAssignmentMethod.value = "";
 	textBeginDate.value = "";
 }
-/* UPDATE FUNCTIONS -- END*/
+/* INSERT FUNCTIONS -- END*/
 
-/* MISC FUNCTIONS -- BEGIN  */
+/* DELET FUNCTIONS -- BEGIN*/
+function handleCaseAssignmentRuleTableDeleteClick(e) {
+    var ruleNumber = e.target.getAttribute("data-rule-num");
+
+    //alert("you want to update employee " + employeeId);
+
+    var rowCircuitId = document.getElementById("rule-num-" + ruleNumber + "-circuit-id");
+	var rowCountyId = document.getElementById("rule-num-" + ruleNumber + "-county-id");
+	var rowCourtCode = document.getElementById("rule-num-" + ruleNumber + "-court-code");
+	var rowCaseTypeCode = document.getElementById("rule-num-" + ruleNumber + "-case-type-code");
+	var rowAssignmentMethod = document.getElementById("rule-num-" + ruleNumber + "-assignment-method");
+	var rowBegintDate = document.getElementById("rule-num-" + ruleNumber + "-begin-date");
+	var rowEndDate = document.getElementById("rule-num-" + ruleNumber + "-end-date");
+
+	var textRuleNumber = document.getElementById("text-delete-rule-number");
+	var textCircuitId = document.getElementById("text-delete-circuit-id");
+	var textCountyId = document.getElementById("text-delete-county-id");
+	var textCourtCode = document.getElementById("text-delete-court-code");
+	var textCaseTypeCode = document.getElementById("text-delete-case-type-code");
+	var textAssignmentMethod = document.getElementById("text-delete-assignment-method");
+	var textBeginDate = document.getElementById("text-delete-begin-date");
+	var textEndDate = document.getElementById("text-delete-end-date");
+
+	textRuleNumber.value = ruleNumber;
+	textCircuitId.value = rowCircuitId.innerText;
+	textCountyId.value = rowCountyId.innerText;
+	textCourtCode.value = rowCourtCode.innerText;
+	textCaseTypeCode.value = rowCaseTypeCode.innerText;
+	textAssignmentMethod.value = rowAssignmentMethod.innerText;
+	textBeginDate.value = rowBegintDate.innerText;
+	textEndDate.value = rowEndDate.innerText;
+	
+	var caseAssignmentRuleDeleteForm = document.getElementById("case-assignment-rule-delete-form");
+	caseAssignmentRuleDeleteForm.classList.remove("visually-hidden");
+}
+
+function handCaseAssignmentRuleButtonDeleteClick() {
+    var textRuleNumber = document.getElementById("text-delete-rule-number");
+    deleteCaseAssignmentRule(textRuleNumber.value);
+}
+
+function deleteCaseAssignmentRule(ruleNumber) {
+
+    var url = "http://localhost:5296/DeleteCaseAssignmentRule?ruleNumber=" + ruleNumber;
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = doAfterDeleteCaseAssignmentRule;
+    xhr.open("DELETE", url);
+    xhr.send(null);
+
+    function doAfterDeleteCaseAssignmentRule() {
+        var DONE = 4; // readyState 4 means the request is done.
+        var OK = 200; // status 200 is a successful return.
+        if (xhr.readyState === DONE) {
+            if (xhr.status === OK) {
+
+                var response = JSON.parse(xhr.responseText);
+
+                if (response.result === "success") {
+                    alert(response.message);
+                    //showEmployees(response.employees);
+                } else {
+                    alert("API Error: " + response.message);
+                }
+            } else {
+                alert("Server Error: " + xhr.status + " " + xhr.statusText);
+            }
+        }
+    }
+
+    resetCaseAssignmentRuleDeleteForm();
+}
+
+function resetCaseAssignmentRuleDeleteForm() {
+	var textRuleNumber = document.getElementById("text-delete-rule-number");
+	var textCircuitId = document.getElementById("text-delete-circuit-id");
+	var textCountyId = document.getElementById("text-delete-county-id");
+	var textCourtCode = document.getElementById("text-delete-court-code");
+	var textCaseTypeCode = document.getElementById("text-delete-case-type-code");
+	var textAssignmentMethod = document.getElementById("text-delete-assignment-method");
+	var textBeginDate = document.getElementById("text-delete-begin-date");
+	var textEndDate = document.getElementById("text-delete-end-date");
+	
+	var caseAssignmentRuleDeleteForm = document.getElementById("case-assignment-rule-delete-form");
+	caseAssignmentRuleDeleteForm.classList.add("visually-hidden");
+	
+	textRuleNumber.value = "";
+	textCircuitId.value = "";
+	textCountyId.value = "";
+	textCourtCode.value = "";
+	textCaseTypeCode.value = "";
+	textAssignmentMethod.value = "";
+	textBeginDate.value = "";
+	textEndDate.value = "";
+    
+}
+/* DELET FUNCTIONS -- END*/
+
+/* MISC FUNCTIONS -- BEGIN*/
 function getCurrentDate(){
     const currentDate = new Date();
     
@@ -317,7 +456,7 @@ function getCurrentDate(){
     var today = year + '-' + month + '-' + day;
     return today;
 }
-/* MISC FUNCTIONS -- BEGIN  */
+/* MISC FUNCTIONS -- END*/
 
 
 
