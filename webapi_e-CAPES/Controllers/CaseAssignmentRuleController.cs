@@ -17,7 +17,7 @@ public class CaseAssignmentRuleController : ControllerBase
     [HttpGet]
     [Route("/SearchCaseAssignmentRules")]
 
-    public Response SearchCaseAssignmentRules(string? circuitIdSearch = null, string? countyIdSearch = "",string? courtCodeSearch = "", string? caseTypeCodeSearch = "")
+    public Response SearchCaseAssignmentRules(string pageSize = "10", string pageNumber = "1", string? circuitIdSearch = null, string? countyIdSearch = "",string? courtCodeSearch = "", string? caseTypeCodeSearch = "")
     {
         Response response = new Response();
         try
@@ -27,7 +27,7 @@ public class CaseAssignmentRuleController : ControllerBase
             using(SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
                 sqlConnection.Open();
-                caseAssignmentRules = CaseAssignmentRule.SearchCaseAssignmentRules(sqlConnection,Convert.ToInt32(circuitIdSearch),countyIdSearch,courtCodeSearch,caseTypeCodeSearch);
+                caseAssignmentRules = CaseAssignmentRule.SearchCaseAssignmentRules(sqlConnection,Convert.ToInt32(pageSize), Convert.ToInt32(pageNumber), Convert.ToInt32(circuitIdSearch),countyIdSearch,courtCodeSearch,caseTypeCodeSearch);
             }
 
             string message = "";

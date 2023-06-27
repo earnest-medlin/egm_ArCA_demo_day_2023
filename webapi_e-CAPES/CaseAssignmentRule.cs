@@ -10,11 +10,19 @@ namespace webapi_e_CAPES
 
         public int CircuitId { get; set;}
 
+        public string CircuitDescription { get; set;}
+
         public string CountyId  { get; set;}
+
+        public string CountyName  { get; set;}
 
         public string CourtCode { get; set;}
 
+        public string CourtDescription { get; set;}
+
         public string CaseTypeCode { get; set;}
+
+        public string CaseTypeDescription { get; set;}
 
         public string AssignmentMethod { get; set;}
 
@@ -25,6 +33,7 @@ namespace webapi_e_CAPES
         public DateTime? DateLastModified { get; set;}
 
         public string ModifiedByUserId { get; set;}
+
         public int CaseAssignmentRuleCount { get; set; }  
 
         public CaseAssignmentRule()
@@ -57,27 +66,44 @@ namespace webapi_e_CAPES
             ModifiedByUserId = modifiedByUserId;
         }
         //public static List<CaseAssignmentRule> SearchCaseAssignmentRules(SqlConnection sqlConnection, string search = "")
-        public static List<CaseAssignmentRule> SearchCaseAssignmentRules(SqlConnection sqlConnection, int? circuitIdSearch = null, string? countyIdSearch = null,string? courtCodeSearch = null, string? caseTypeCodeSearch = null )
+        public static List<CaseAssignmentRule> SearchCaseAssignmentRules(SqlConnection sqlConnection,int pageSize = 10, int pageNumber = 1, int? circuitIdSearch = null, string? countyIdSearch = null,string? courtCodeSearch = null, string? caseTypeCodeSearch = null )
         {
             List<CaseAssignmentRule> caseAssignmentRules = new List<CaseAssignmentRule>();
             
-            string sqlSelect = "Select RuleNumber, CircuitId, CountyId, CourtCode, CaseTypeCode, AssignmentMethod, RuleBeginDate, RuleEndDate, DateLastModified, ModifiedByUserId, count(*) over () as CaseAssignmentRuleCount FROM Court_Case_Management.dbo.CaseAssignmentRule "; 
-            string sqlWhere = "where CircuitId like '%' + @CircuitId + '%' and CountyId like '%'+ @CountyId + '%' and CourtCode like '%' + @CourtCode + '%' and CaseTypeCode like '%' + @CaseTypeCode + '%';";
-            string sql = sqlSelect + sqlWhere;
+            //string sqlSelect = "Select RuleNumber, CircuitId, CountyId, CourtCode, CaseTypeCode, AssignmentMethod, RuleBeginDate, RuleEndDate, DateLastModified, ModifiedByUserId, count(*) over () as CaseAssignmentRuleCount FROM Court_Case_Management.dbo.CaseAssignmentRule "; 
+            //string sqlWhere = "where CircuitId like '%' + @CircuitId + '%' and CountyId like '%'+ @CountyId + '%' and CourtCode like '%' + @CourtCode + '%' and CaseTypeCode like '%' + @CaseTypeCode + '%';";
+            //string sql = sqlSelect + sqlWhere;
+
+            string sqlSelect = "Select r.RuleNumber, r.CircuitId, circ.CircuitDescription, r.CountyId, cnty.CountyName, r.CourtCode, cort.CourtDescription, r.CaseTypeCode, ct.CaseTypeDescription, r.AssignmentMethod, r.RuleBeginDate, r.RuleEndDate, r.DateLastModified, r.ModifiedByUserId, i.[Count] ";
+            string sqlFrom = "FROM (Select RuleNumber, count(*) over () AS [Count] from Court_Case_Management.dbo.CaseAssignmentRule where CircuitId like '%' + @CircuitId + '%' and CountyId like '%'+ @CountyId + '%' and CourtCode like '%' + @CourtCode + '%' and CaseTypeCode like '%' + @CaseTypeCode + '%' order by RuleNumber offset @PageSize * (@PageNumber - 1) rows fetch next @PageSize rows only) i ";
+            string sqlJoinRuleNumber = "join Court_Case_Management.dbo.CaseAssignmentRule r on r.RuleNumber = i.RuleNumber ";
+            string sqlJoinCircuit = "join Court_Case_Management.dbo.Circuit circ on circ.CircuitId = r. CircuitId ";
+            string sqlJoinCounty = "join Court_Case_Management.dbo.County cnty on cnty.CountyId = r.CountyId ";
+            string sqlJoinCourt = "join Court_Case_Management.dbo.Court cort on cort.CourtCode = r.CourtCode ";
+            string sqlJoinCaseType = "join Court_Case_Management.dbo.CaseType ct on ct.CaseTypeCode = r.CaseTypeCode Order by 1;";
+
+            string sql = sqlSelect + sqlFrom + sqlJoinRuleNumber + sqlJoinCircuit + sqlJoinCounty + sqlJoinCourt + sqlJoinCaseType;
+
 
             SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection);
             sqlCommand.CommandType = System.Data.CommandType.Text;
 
+            SqlParameter paramPageSize = new SqlParameter("@PageSize", pageSize);
+            SqlParameter paramPageNumber = new SqlParameter("@PageNumber", pageNumber);
             SqlParameter paramCircuitIdSearch = new SqlParameter("@CircuitId", circuitIdSearch == 0 ? "" : circuitIdSearch.ToString());
             SqlParameter paramCountyIdSearch = new SqlParameter("@CountyId", countyIdSearch);
             SqlParameter paramCourtCodeSearch = new SqlParameter("@CourtCode", courtCodeSearch);
             SqlParameter paramCaseTypeCodeSearch = new SqlParameter("@CaseTypeCode", caseTypeCodeSearch);
 
+            paramPageSize.DbType = System.Data.DbType.Int32;
+            paramPageNumber.DbType = System.Data.DbType.Int32;
             paramCircuitIdSearch.DbType = System.Data.DbType.String;
             paramCountyIdSearch.DbType = System.Data.DbType.String;
             paramCourtCodeSearch.DbType = System.Data.DbType.String;
             paramCaseTypeCodeSearch.DbType = System.Data.DbType.String;
 
+            sqlCommand.Parameters.Add(paramPageSize);
+            sqlCommand.Parameters.Add(paramPageNumber);
             sqlCommand.Parameters.Add(paramCircuitIdSearch);
             sqlCommand.Parameters.Add(paramCountyIdSearch);
             sqlCommand.Parameters.Add(paramCourtCodeSearch);
@@ -91,17 +117,23 @@ namespace webapi_e_CAPES
                 
                 caseAssignmentRule.RuleNumber = Convert.ToInt32(sqlDataReader["RuleNumber"].ToString());
                 caseAssignmentRule.CircuitId = Convert.ToInt32(sqlDataReader["CircuitId"].ToString());
+                //Circuit Desc
+                caseAssignmentRule.CircuitDescription = sqlDataReader["CircuitDescription"].ToString();
                 caseAssignmentRule.CountyId = sqlDataReader["CountyId"].ToString();
+                //County Name
+                caseAssignmentRule.CountyName = sqlDataReader["CountyName"].ToString();
                 caseAssignmentRule.CourtCode = sqlDataReader["CourtCode"].ToString();
+                //Court Desc
+                caseAssignmentRule.CourtDescription = sqlDataReader["CourtDescription"].ToString();
                 caseAssignmentRule.CaseTypeCode = sqlDataReader["CaseTypeCode"].ToString();
+                //Case Type Desc
+                caseAssignmentRule.CaseTypeDescription = sqlDataReader["CaseTypeDescription"].ToString();
                 caseAssignmentRule.AssignmentMethod = sqlDataReader["AssignmentMethod"].ToString();
-                //caseAssignmentRule.RuleBeginDate = DateOnly.FromDateTime(Convert.ToDateTime((sqlDataReader["RuleBeginDate"].ToString())));
                 caseAssignmentRule.RuleBeginDate = Convert.ToDateTime((sqlDataReader["RuleBeginDate"].ToString()));
-                //caseAssignmentRule.RuleEndDate = DateOnly.FromDateTime(Convert.ToDateTime((sqlDataReader["RuleEndDate"].ToString())));
                 caseAssignmentRule.RuleEndDate = (sqlDataReader["RuleEndDate"] == DBNull.Value) ? null : Convert.ToDateTime((sqlDataReader["RuleEndDate"].ToString()));
                 caseAssignmentRule.DateLastModified = Convert.ToDateTime((sqlDataReader["DateLastModified"].ToString()));
                 caseAssignmentRule.ModifiedByUserId = sqlDataReader["ModifiedByUserId"].ToString();
-                caseAssignmentRule.CaseAssignmentRuleCount = Convert.ToInt32(sqlDataReader["CaseAssignmentRuleCount"].ToString());
+                caseAssignmentRule.CaseAssignmentRuleCount = Convert.ToInt32(sqlDataReader["Count"].ToString());
 
                 caseAssignmentRules.Add(caseAssignmentRule);
             }
