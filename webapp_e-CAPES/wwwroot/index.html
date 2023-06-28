@@ -27,10 +27,11 @@
                     3 of 3
                   </div>
                 </div>
-                <!-- SEARCH MENU DROPDOWN-->
                 <div class="row align-items-start">
+                    <!-- PAGINATION | PARAMETER DROPDOWNS | SEARCH -->
                     <div class="col">
                         <!--(1 & 2) of 12-->
+                        <!-- PAGINATION -->
                         <div class="row mb-2 g-2">
                             <div class="col-auto">
                                 <button id="button-page-prev" type="button" class="btn btn-primary">&lt;</button>
@@ -47,6 +48,7 @@
                         </div> 
                     </div>
                     <div class="col-8">
+                        <!-- PARAMETER DROPDOWNS -->
                         <div class="row justify-content-center align-items-start">
                             <div class="col"> <!-- CIRCUIT PARAMETER -->
                                 <select id="circuit-search-parameter" class="form-select-sm text-left" aria-label="Default select example">
@@ -161,7 +163,7 @@
                                     <option value="75">75-> YELL</option>
                                   </select> 
                             </div>
-                            <div class="col"> <!-- COUNTY PARAMETER -->
+                            <div class="col"> <!-- COURT PARAMETER -->
                                 <select id="court-search-parameter" class="form-select-sm text-left" aria-label="Default select example">
                                     <option selected value="" class="text-center">Court</option>
                                     <option value="CI">CI-> CIRCUIT</option>
@@ -247,11 +249,15 @@
                         </div>
                     </div>
                     <div class="col">
+                        <!-- SEARCH BUTTON & RESET -->
                         <button id="button-search" type="button" class="btn btn-primary">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                             </svg>
                             Search
+                        </button>
+                        <button id="button-reset" type="button" class="btn btn-secondary">
+                            Reset
                         </button>
                     </div>
                 </div>
@@ -338,28 +344,6 @@
                 <div id="case-assignment-rule-table-div">
                 </div>
             </div>
-            <!-- Case Assignment Rule Table Pagination-->
-            <!--
-            <div>
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                      <li class="page-item">
-                        <a class="page-link disabled" href="#" aria-label="Previous">
-                          <span aria-hidden="true">&laquo;</span>
-                        </a>
-                      </li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                          <span aria-hidden="true">&raquo;</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
-            </div>
-            -->
             <!--Case Assignment Rule Table Update-->
             <div id="case-assignment-rule-table-update" class="row">
                 <div id="case-assignment-rule-update-form" class="row visually-hidden">
@@ -487,10 +471,18 @@
                 <!--Judge Distribution Assignment & Feedback Headers-->
                 <div class="row">
                     <div class="col-3">
-                        <h3>S.C. Feedback</h3>
+                        <h3>Supreme Court Feedback</h3>
                     </div>
-                    <div class="col-9">
+                    <div class="col-6">
                         <h3>Judge Distribution Assignments</h3>
+                    </div>
+                    <div class="col-3 ">
+                        <button id="judge-distribution-assignments-show-insert-form-button" type="button" class="btn btn-secondary judge-distribution-assignments-rule-show-insert-form-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                                <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
+                            </svg>
+                            Add New Distribution
+                        </button>
                     </div>
                 </div>
                 <!--Judge Distribution Assignment & Feedback Tables-->
@@ -514,128 +506,127 @@
                     </div>
                     <div class="col-9">
                         <div class="col col-12 col-judge-distribution_Assignments">
-                            <div id="judge-distribution_assignment-table-div">
-                                <table id="judge-distribution-assignment-table" class="table table-dark table-striped table-bordered table-sm">
-                                    <thead>
-                                        <tr>
-                                            <th id="record-selector-header"class="select-check-box" scope="col">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square-fill" viewBox="0 0 16 16">
-                                                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
+                            <div id="judge=distribution-assignments-insert-form" class="row">
+                                <h4>Insert Distribution Assignment</h4>
+                                <form>
+                                    <div class="row mb-2">
+                                        <div class="col">
+                                            <label for="text-insert-rule-number" class="form-label">Rule Number</label>
+                                            <input id="text-insert-rule-number" type="text" class="form-control">
+                                        </div>
+                                        <div class="col">
+                                            <label for="text-insert-judge-id" class="form-label">judge Id</label>
+                                            <input id="text-insert-judge-id" type="text" class="form-control">
+                                        </div>
+                                        <div class="col">
+                                            <label for="text-insert-assignment-percent" class="form-label">Assignment %</label>
+                                            <input id="text-insert-assignment-percent" type="text" class="form-control">
+                                        </div>
+                                        <div class="col">
+                                            <label for="text-insert-priority-level" class="form-label">Priority Level</label>
+                                            <input id="text-insert-priority-level" type="text" class="form-control">
+                                        </div>       
+                                    </div>
+                                    <div class="row g-2 align-items-start justify-content-end">
+                                        <div class="col-auto">
+                                            <button id="judge-distribution-assignment-insert-button" type="button" data-employee-id="1" class="btn btn-outline-warning btn-sm judge-distribution-assignment-insert-button">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
+                                                    <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z"/>
                                                 </svg>
-                                            </th>
-                                            <th scope="col">Rule #</th>
-                                            <th scope="col">ID</th> 
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Assignment %</th>
-                                            <th scope="col">Priority LVL</th>
-                                            <th class="button-column" scope="col">Update/Delete</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td id="rule-num-1001-judge-id-c23d01-check-box">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                    <label class="form-check-label" for="flexCheckDefault">
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td id="rule-num-1001-judge-id-c23d01-rule-number" scope="col">1001</td>
-                                            <td id="rule-num-1001-judge-id-c23d01-judge-id" scope="col">C23D01</td> 
-                                            <td id="rule-num-1001-judge-id-c23d01-judge-name" scope="col">BARBARA ELMORE</td>
-                                            <td id="rule-num-1001-judge-id-c23d01-%" scope="col">0</td>
-                                            <td id="rule-num-1001-judge-id-c23d01-priority" scope="col">2</td>
-                                            <td>
-                                                <div class="row g-2">
-                                                    <div class="col-auto">
-                                                        <button type="button" data-employee-id="1" class="btn btn-outline-warning btn-sm btn-judge-distribution-assignmen-table-update">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
-                                                                <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z"/>
-                                                            </svg>
-                                                        Update
-                                                        </button>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <button id="" type="button" data-employee-id="1" class="btn btn-outline-danger btn-sm btn-judge-distribution-assignmen-table-delete">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
-                                                            </svg>
-                                                            Delete
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td id="rule-num-1001-judge-id-c23d02-check-box">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                    <label class="form-check-label" for="flexCheckDefault">
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td id="rule-num-1001-judge-id-c23d02-rule-number" scope="col">1001</td>
-                                            <td id="rule-num-1001-judge-id-c23d02-judge-id" scope="col">C23D02</td> 
-                                            <td id="rule-num-1001-judge-id-c23d02-judge-name" scope="col">JASON PARKER</td>
-                                            <td id="rule-num-1001-judge-id-c23d02-%" scope="col">0</td>
-                                            <td id="rule-num-1001-judge-id-c23d02-priority" scope="col">2</td>
-                                            <td>
-                                                <div class="row g-2">
-                                                    <div class="col-auto">
-                                                        <button type="button" data-employee-id="1" class="btn btn-outline-warning btn-sm btn-judge-distribution-assignmen-table-update">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
-                                                                <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z"/>
-                                                            </svg>
-                                                        Update
-                                                        </button>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <button id="" type="button" data-employee-id="1" class="btn btn-outline-danger btn-sm btn-judge-distribution-assignmen-table-delete">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
-                                                            </svg>
-                                                        Delete
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td id="rule-num-1001-judge-id-c23d02-check-box">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                    <label class="form-check-label" for="flexCheckDefault">
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td id="rule-num-1001-judge-id-c23d02-rule-number" scope="col">1001</td>
-                                            <td id="rule-num-1001-judge-id-c23d02-judge-id" scope="col">C23D03</td> 
-                                            <td id="rule-num-1001-judge-id-c23d02-judge-name" scope="col">PARKER HUCKABEE</td>
-                                            <td id="rule-num-1001-judge-id-c23d02-%" scope="col">100</td>
-                                            <td id="rule-num-1001-judge-id-c23d02-priority" scope="col">1</td>
-                                            <td>
-                                                <div class="row g-2">
-                                                    <div class="col-auto">
-                                                        <button type="button" data-employee-id="1" class="btn btn-outline-warning btn-sm btn-judge-distribution-assignmen-table-update">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
-                                                                <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z"/>
-                                                            </svg>
-                                                        Update
-                                                        </button>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <button id="" type="button" data-employee-id="1" class="btn btn-outline-danger btn-sm btn-judge-distribution-assignmen-table-delete">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
-                                                            </svg>
-                                                        Delete
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                                Insert
+                                            </button>
+                                        </div>
+                                        <div class="col-auto">
+                                            <button id="judge-distribution-assignment-cancel-insert-button" type="button" data-employee-id="1" class="btn btn-outline-success btn-sm judge-distribution-assignment-cancel-insert-button">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-octagon-fill" viewBox="0 0 16 16">
+                                                    <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm-6.106 4.5L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
+                                                </svg>
+                                                Cancel
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div id="judge-distribution-assignment-table-div">
+                            </div>
+                            <!--Judge Distribution Assignments Rule Table Update-->
+                            <div id="judge-distribution-assignment-table-update" class="row">
+                                <div id="judge-distribution-assignment-update-form" class="row">
+                                    <h4>Update Distribution Asignment</h4>
+                                    <form>
+                                        <div class="row mb-2">
+                                            <div class="col">
+                                                <label for="text-update-rule-number" class="form-label">Rule Number</label>
+                                                <input id="text-update-rule-number" type="text" class="form-control">
+                                            </div>
+                                            <div class="col">
+                                                <label for="text-update-judge-id" class="form-label">judge Id</label>
+                                                <input id="text-update-county-id" type="text" class="form-control">
+                                            </div>
+                                            <div class="col">
+                                                <label for="text-update-assignment-percent" class="form-label">Assignment %</label>
+                                                <input id="text-update-assignment-percent" type="text" class="form-control">
+                                            </div>
+                                            <div class="col">
+                                                <label for="text-update-priority-level" class="form-label">Priority Level</label>
+                                                <input id="text-update-priority-level" type="text" class="form-control">
+                                            </div>       
+                                        </div>
+                                        <div class="row g-2 justify-content-end">
+                                            <div class="col-auto">
+                                                <button id="judge-distribution-assignment-update-button" type="button" class="btn btn-outline-warning btn-sm judge-distribution-assignment-update-button">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
+                                                        <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z"/>
+                                                    </svg>
+                                                    Update
+                                                </button>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button id="judge-distribution-assignment-cancel-update-button" type="button" data-employee-id="1" class="btn btn-outline-success btn-sm judge-distribution-assignment-cancel-update-button">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-octagon-fill" viewBox="0 0 16 16">
+                                                        <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm-6.106 4.5L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
+                                                    </svg>
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div id="judge-distribution-assignment-table-delete" class="row">
+                                <div id="judge-distribution-assignment-delete-form" class="row">
+                                    <h4>Delete Distribution Assignment</h4>
+                                    <form>
+                                        <div class="row mb-2">
+                                            <div class="col">
+                                                <label for="text-delete-rule-number" class="form-label">Rule Number</label>
+                                                <input id="text-delete-rule-number" type="text" class="form-control">
+                                            </div>
+                                            <div class="col">
+                                                <label for="text-delete-judge-id" class="form-label">judge Id</label>
+                                                <input id="text-delet-judge-id" type="text" class="form-control">
+                                            </div> 
+                                        </div>
+                                        <div class="row g-2 justify-content-end">
+                                            <div class="col-auto">
+                                                <button id="judge-distribution-assignment-delete-button" type="button" data-employee-id="1" class="btn btn-outline-danger btn-sm btn-sm judge-distribution-assignment-delete-button">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                                                    </svg>
+                                                    Delete
+                                                </button>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button id="case-assignment-rule-cancel-delete-button" type="button" data-employee-id="1" class="btn btn-outline-success btn-sm judge-distribution-assignment-cancel-delete-button">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-octagon-fill" viewBox="0 0 16 16">
+                                                        <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm-6.106 4.5L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
+                                                    </svg>
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>

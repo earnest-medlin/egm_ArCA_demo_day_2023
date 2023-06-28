@@ -51,6 +51,7 @@ public class JudgeAssignmentDistributionRuleController : ControllerBase
         {
             response.Result = "failure";
             response.Message = e.Message;
+            //Create a null Distribution Rule add to dist rule list and send that maybe???
         }
         return response;
     }

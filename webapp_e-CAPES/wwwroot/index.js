@@ -92,7 +92,7 @@ buttonCaseAssignmentRuleShowInsertForm.addEventListener("click", showInsertForm)
 buttonCaseAssignmentRuleInsert.addEventListener("click", insertCaseAssignmentRule);
 buttonCaseAssignmentRuleInsertCancel.addEventListener("click", resetCaseAssignmentRuleInsertForm);
 
-buttonCaseAssignmentRuleDelete.addEventListener("click", handCaseAssignmentRuleButtonDeleteClick);
+buttonCaseAssignmentRuleDelete.addEventListener("click", handleCaseAssignmentRuleButtonDeleteClick);
 buttonCaseAssignmentRuleDeleteCancel.addEventListener("click", resetCaseAssignmentRuleDeleteForm);
 
 buttonPagePrev.addEventListener("click", handleButtonPagePrevClick);
@@ -101,6 +101,7 @@ buttonPageNext.addEventListener("click", handleButtonPageNextClick);
 //Functions
 
 /* SEARCH FUNCTIONS --BEGIN*/
+/* Case Assignment Rules */
 function searchCaseAssignmentRules() {
 
     var url = "http://localhost:5296/SearchCaseAssignmentRules?pageSize=" + rowsPerPage + "&pageNumber=" + textPage.value + "&circuitIdSearch=" + circuitParameter.value + "&countyIdSearch=" + countyParameter.value + "&courtCodeSearch=" + courtParameter.value + "&caseTypeCodeSearch=" + caseTypeParameter.value;
@@ -131,7 +132,6 @@ function searchCaseAssignmentRules() {
         }
     }
 }
-
 function showCaseAssignmentRules(caseAssignmentRules) {
     var caseAssignmentRuleTableHeaderText = "<table id='case-assignment-rule-table'class='table table-dark table-striped table-bordered table-sm'><thead><tr><th id='record-selector-header' scope='col' class='select-check-box'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-check-square-fill' viewBox='0 0 16 16'><path d='M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z'/></svg></th><th scope='col'>Rule #</th><th scope='col'>Circuit Code</th><th scope='col'>County Id</th><th scope='col'>Court Code</th><th scope='col'>Case Type Code</th><th scope='col'>Assignment Method</th><th scope='col'>Begin Date</th><th scope='col'>End Date</th><th id='update-delete-column-header' scope='col' class='button-column'>Update/Delete</th></tr></thead><tbody>";
     var caseAssignmentRuleTableText = caseAssignmentRuleTableHeaderText;
@@ -143,7 +143,6 @@ function showCaseAssignmentRules(caseAssignmentRules) {
 
         var caseAssignmentRuleTableRowCheckBox ="<tr><td id='rule-num-" + caseAssignmentRule.ruleNumber + "-check-box'><div class='form-check'><input class='form-check-input case-assignment-rule-check-box' type='checkbox' data-rule-num='" + caseAssignmentRule.ruleNumber + "'id='rule-num-" + caseAssignmentRule.ruleNumber + "-flexCheckDefault'/><label class='form-check-label' for='rule-num-" + caseAssignmentRule.ruleNumber + "-flexCheckDefault'></label></div></td>";
         var caseAssignmentRuleTableRowDataText ="<th scope='row'>" + caseAssignmentRule.ruleNumber + "</th><td id='rule-num-" + caseAssignmentRule.ruleNumber + "-circuit-id'>" + caseAssignmentRule.circuitId + "</td><td id='rule-num-" + caseAssignmentRule.ruleNumber + "-county-id'>" + caseAssignmentRule.countyId + "</td><td id='rule-num-" + caseAssignmentRule.ruleNumber + "-court-code'>" + caseAssignmentRule.courtCode + "</td><td id='rule-num-" + caseAssignmentRule.ruleNumber + "-case-type-code'>" + caseAssignmentRule.caseTypeCode + "</td><td id='rule-num-" + caseAssignmentRule.ruleNumber + "-assignment-method'>" + caseAssignmentRule.assignmentMethod + "</td><td id='rule-num-" + caseAssignmentRule.ruleNumber + "-begin-date'>" + caseAssignmentRule.ruleBeginDate.split('T')[0] + "</td><td id='rule-num-" + caseAssignmentRule.ruleNumber + "-end-date'>" + endDate + "</td>";
-        //var caseAssignmentRuleTableRowButtons ="<td><div class='row g-2'><div class='col-auto'><button type='button' data-rule-num='" + caseAssignmentRule.ruleNumber + "' class='btn btn-outline-warning btn-sm btn-case-assignment-rule-table-update'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-arrow-up-square-fill' viewBox='0 0 16 16'><path d='M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z'/></svg>Update</button></div><div class='col-auto'><button type='button' data-rule-num='" + caseAssignmentRule.ruleNumber + "' class='btn btn-outline-danger btn-sm btn-case-assignment-rule-table-delete'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash3-fill' viewBox='0 0 16 16'><path d='M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z'/></svg>Delete</button>";
         var caseAssignmentRuleTableRowButtons ="<td><div class='row g-2'><div class='col-auto'><button id='rule-number-" + caseAssignmentRule.ruleNumber + "-update-button' type='button' data-rule-num='" + caseAssignmentRule.ruleNumber + "' class='btn visually-hidden btn-outline-warning btn-sm btn-case-assignment-rule-table-update'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-arrow-up-square-fill' viewBox='0 0 16 16'><path d='M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z'/></svg>Update</button></div><div class='col-auto'><button id='rule-number-" + caseAssignmentRule.ruleNumber + "-delete-button' type='button' data-rule-num='" + caseAssignmentRule.ruleNumber + "' class='btn visually-hidden btn-outline-danger btn-sm  btn-case-assignment-rule-table-delete'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash3-fill' viewBox='0 0 16 16'><path d='M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z'/></svg>Delete</button>";
         var caseAssignmentRuleTableRowClosingTags = "</div></div></td></tr>";
 
@@ -163,8 +162,8 @@ function showCaseAssignmentRules(caseAssignmentRules) {
     var updateButtons = document.getElementsByClassName("btn-case-assignment-rule-table-update");
     var deleteButtons = document.getElementsByClassName("btn-case-assignment-rule-table-delete");
 
-    addUpdateButtonEventListener(updateButtons);
-    addDeleteButtonEventListener(deleteButtons);
+    addCaseAssignmentRuleUpdateButtonEventListener(updateButtons);
+    addCaseAssignmentRuleDeleteButtonEventListener(deleteButtons);
     
     var ruleNumberCheckboxes = document.getElementsByClassName("case-assignment-rule-check-box");
 
@@ -209,6 +208,75 @@ function showSearchResultsMessage(caseAssignmentRules) {
     }
 }
 
+/* Judge Distribution Assignments*/
+function searchJudgeDistributionAssignments(ruleNumber) {
+
+    var url = "http://localhost:5296/GetJudgeAssignmentDistributionRules?ruleNumberGet=" + ruleNumber;
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = doAfterSearchJudgeDistributionRule;
+    xhr.open("GET", url);
+    xhr.send(null);
+
+    function doAfterSearchJudgeDistributionRule() {
+        var DONE = 4; // readyState 4 means the request is done.
+        var OK = 200; // status 200 is a successful return.
+        if (xhr.readyState === DONE) {
+            if (xhr.status === OK) {
+
+                var response = JSON.parse(xhr.responseText); // Case Assignment Rules retrieved in the GET API Response
+
+                if (response.result === "success") {
+                    alert(response.message);
+                    //showSearchResultsMessage(response.caseAssignmentRules);
+                    showJudgeDistributionAssignments(response.judgeAssignmentDistributionRules);
+                } else {
+                    alert("API Error: " + response.message);
+                }
+            } else {
+                alert("Server Error: " + xhr.status + " " + xhr.statusText);
+            }
+        }
+    }
+}
+function showJudgeDistributionAssignments(judgeDistributionAssignments) {
+    var judgeDistributionAssignmentsTableText = "";
+	
+	var judgeDistributionAssignmentsTableHeaderText ="<table id='judge-distribution-assignment-table' class='table table-dark table-striped table-bordered table-sm'><thead><tr><th id='record-selector-header'class='judge-distribution-assignment-check-box' scope='col'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-check-square-fill' viewBox='0 0 16 16'><path d='M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z'/></svg></th><th scope='col'>Rule #</th><th scope='col'>ID</th> <th scope='col'>Name</th><th scope='col'>Assignment %</th><th scope='col'>Priority LVL</th><th id='update-delete-column-header' class='button-column' scope='col'>Update/Delete</th></tr></thead><tbody>";
+	
+	judgeDistributionAssignmentsTableText = judgeDistributionAssignmentsTableText + judgeDistributionAssignmentsTableHeaderText;
+    
+    for (var i = 0; i < judgeDistributionAssignments.length; i++) {
+        var judgeDistributionAssignment = judgeDistributionAssignments[i];
+
+        var judgeDistributionAssignmentsTableRowCheckBox = "<tr><td><div class='form-check'><input class='form-check-input judge-distribution-assignment-check-box' type='checkbox' data-rule-num='" + judgeDistributionAssignment.ruleNumber + "'data-judge-id='" + judgeDistributionAssignment.judgeId + "'value='' id='flexCheckDefault'><label class='form-check-label' for='flexCheckDefault'></label></div></td>";
+		var judgeDistributionAssignmentsTableRowDataText = "<th id='rule-num-'" + judgeDistributionAssignment.ruleNumber + "'-judge-id-'" + judgeDistributionAssignment.judgeId + "'-rule-number' scope='col'>" + judgeDistributionAssignment.ruleNumber + "</th><th id='rule-num-'" + judgeDistributionAssignment.ruleNumber + "'-judge-id-'" + judgeDistributionAssignment.judgeId + "'-judge-id' scope='col'>" + judgeDistributionAssignment.judgeId + "</th> <td id='rule-num-'" + judgeDistributionAssignment.ruleNumber + "'-judge-id-'" + judgeDistributionAssignment.judgeId + "'-judge-name'>" + judgeDistributionAssignment.judgeName + "</td><td id='rule-num-'" + judgeDistributionAssignment.ruleNumber + "'-judge-id-'" + judgeDistributionAssignment.judgeId + "'-percent'>" + judgeDistributionAssignment.assignmentPercentage + "</td><td id='rule-num-'" + judgeDistributionAssignment.ruleNumber + "'-judge-id-'" + judgeDistributionAssignment.judgeId + "'-priority'>" + judgeDistributionAssignment.assignmentPriority + "</td>";
+		var judgeDistributionAssignmentsTableRowButtons = "<td><div class='row g-2'><div class='col-auto'><button type='button' data-rule-num='" + judgeDistributionAssignment.ruleNumber + "' data-judge-id='" + judgeDistributionAssignment.judgeId + "' class='btn btn-outline-warning btn-sm btn-judge-distribution-assignment-table-update'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-arrow-up-square-fill' viewBox='0 0 16 16'><path d='M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z'/></svg>Update</button></div><div class='col-auto'><button id='' type='button' data-rule-num='" + judgeDistributionAssignment.ruleNumber + "' data-judge-id='" + judgeDistributionAssignment.judgeId + "' class='btn btn-outline-danger btn-sm btn-judge-distribution-assignment-table-delete'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash3-fill' viewBox='0 0 16 16'><path d='M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z'/></svg>Delete</button>";
+		var judgeDistributionAssignmentsTableRowClosingTags = "</div></div></td></tr>";
+		
+        var judgeDistributionAssignmentsTableRowText = judgeDistributionAssignmentsTableRowCheckBox + judgeDistributionAssignmentsTableRowDataText + judgeDistributionAssignmentsTableRowButtons + judgeDistributionAssignmentsTableRowClosingTags;
+        
+        judgeDistributionAssignmentsTableText = judgeDistributionAssignmentsTableText + judgeDistributionAssignmentsTableRowText;
+    }
+	
+	 var judgeDistributionAssignmentsTableClosingTags = "</tbody></table>";
+
+    judgeDistributionAssignmentsTableText = judgeDistributionAssignmentsTableText + judgeDistributionAssignmentsTableClosingTags;
+
+    judgeDistributionAssignmentTableDiv.innerHTML = judgeDistributionAssignmentsTableText ;
+    
+	/*
+    var judgeDistributionAssignmentUpdateButtons = document.getElementsByClassName("btn-judge-distribution-assignmen-table-update");
+    var judgeDistributionAssignmentDeleteButtons = document.getElementsByClassName("btn-judge-distribution-assignmen-table-delete");
+
+    addJudgeDistributionAssignmentUpdateButtonEventListener(judgeDistributionAssignmentUpdateButtons);
+    addJudgeDistributionAssignmentDeleteButtonEventListener(judgeDistributionAssignmentDeleteButtons);
+    
+    var judgeDistributionAssignmentCheckboxes = document.getElementsByClassName("judge-distribution-assignment-check-box");
+
+    addCheckboxEventListener(judgeDistributionAssignmentCheckboxes);
+	*/
+}
 
 /* SEARCH FUNCTIONS --END*/
 
@@ -226,16 +294,6 @@ function handleCaseAssignmentRuleTableUpdateClick(e) {
 	var rowBegintDate = document.getElementById("rule-num-" + ruleNumber + "-begin-date");
 	var rowEndDate = document.getElementById("rule-num-" + ruleNumber + "-end-date");
 
-    /*
-    console.log(ruleNumber);
-    console.log(rowCircuitId.innerText);
-    console.log(rowCountyId.innerText);
-    console.log(rowCourtCode.innerText);
-    console.log(rowCaseTypeCode.innerText);
-    console.log(rowAssignmentMethod.innerText);
-    console.log(rowBegintDate.innerText);
-    console.log(rowEndDate.innerText);
-    //*/
 	var textRuleNumber = document.getElementById("text-update-rule-number");
 	var textCircuitId = document.getElementById("text-update-circuit-id");
 	var textCountyId = document.getElementById("text-update-county-id");
@@ -245,17 +303,6 @@ function handleCaseAssignmentRuleTableUpdateClick(e) {
 	var textBeginDate = document.getElementById("text-update-begin-date");
 	var textEndDate = document.getElementById("text-update-end-date");
 	
-    /*
-    console.log(textRuleNumber.value);
-	console.log(textCircuitId.value);
-    console.log(textCountyId);
-	console.log(textCourtCode.value);
-	console.log(textCaseTypeCode.value);
-	console.log(textAssignmentMethod.value);
-	console.log(textBeginDate.value);
-	console.log(textEndDate.value);
-    //*/
-
 	textRuleNumber.value = ruleNumber;
 	textCircuitId.value = rowCircuitId.innerText;
 	textCountyId.value = rowCountyId.innerText;
@@ -464,7 +511,7 @@ function handleCaseAssignmentRuleTableDeleteClick(e) {
 	caseAssignmentRuleDeleteForm.classList.remove("visually-hidden");
 }
 
-function handCaseAssignmentRuleButtonDeleteClick() {
+function handleCaseAssignmentRuleButtonDeleteClick() {
     var textRuleNumber = document.getElementById("text-delete-rule-number");
     deleteCaseAssignmentRule(textRuleNumber.value);
 }
@@ -594,14 +641,14 @@ function tablePaginationButtons(pageCount,current){
     return buttons;
 }
 /* Add Update Button Event Listener */
-function addUpdateButtonEventListener(buttons){
+function addCaseAssignmentRuleUpdateButtonEventListener(buttons){
     for (var i = 0; i < buttons.length; i++) {
         var button = buttons[i];
         button.addEventListener("click", handleCaseAssignmentRuleTableUpdateClick);
     }
 }
 /* Add Delete Button Event Listener */
-function addDeleteButtonEventListener(buttons){
+function addCaseAssignmentRuleDeleteButtonEventListener(buttons){
     for (var i = 0; i < buttons.length; i++) {
         var button = buttons[i];
         button.addEventListener("click", handleCaseAssignmentRuleTableDeleteClick);
@@ -611,11 +658,11 @@ function addDeleteButtonEventListener(buttons){
 function addCheckboxEventListener(checkboxes){
     for (var i = 0; i < checkboxes.length; i++){
         var checkbox = checkboxes[i];
-        checkbox.addEventListener("change",ruleNumberCheckboxChange);
+        checkbox.addEventListener("change",caseAssignmentRuleCheckboxChange);
     }
 }
 /* Checkbox Behaviors */
-function ruleNumberCheckboxChange(checkboxElement){
+function caseAssignmentRuleCheckboxChange(checkboxElement){
     var ruleNumber = checkboxElement.target.getAttribute("data-rule-num");
     console.log("RuleNumbeer: " + ruleNumber);
     var isChecked = checkboxElement.target.checked;
@@ -650,6 +697,7 @@ function ruleNumberCheckboxChange(checkboxElement){
         //TO DO:
 	    //Query judge distribution
 	    //Populate Judge Distribution Assignment table
+        searchJudgeDistributionAssignments(ruleNumber);
 	} else{
         alert(ruleNumber + " has been un-checked!");
         console.log(ruleNumber + " has been un-checked!");
@@ -670,6 +718,7 @@ function ruleNumberCheckboxChange(checkboxElement){
 		
         //TO DO:
 		//Reset Judge Distribution Assignment table
+        judgeDistributionAssignmentTableDiv.innerHTML = "";
 	}
 } 
 /* MISC FUNCTIONS -- END*/
