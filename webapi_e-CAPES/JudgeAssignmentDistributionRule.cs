@@ -6,24 +6,31 @@ namespace webapi_e_CAPES
 {
     public class JudgeAssignmentDistributionRule
     {
-        public int RuleNumber { get; set;}
+        public int? RuleNumber { get; set;}
 
         public string? JudgeId  { get; set;}
 
         public string? JudgeName { get; set;}
 
-        public int AssignmentPercentage { get; set;}
+        public int? AssignmentPercentage { get; set;}
 
-        public int AssignmentPriority { get; set;}
+        public int? AssignmentPriority { get; set;}
 
         public DateTime? DateLastModified { get; set;}
 
-        public string ModifiedByUserId { get; set;}
+        public string? ModifiedByUserId { get; set;}
 
         public int JudgeAssignmentDistributionRuleCount { get; set; }
 
          public JudgeAssignmentDistributionRule()
         {
+            RuleNumber = null;
+            JudgeId = null;
+            JudgeName = null;
+            AssignmentPercentage = null;
+            AssignmentPriority = null;
+            DateLastModified = null;
+            ModifiedByUserId = null;
 
         }
         public JudgeAssignmentDistributionRule( int ruleNumber, string judgeId, string judgeName , int assignmentPercentage, int assignmentPriority, DateTime? dateLastModified, string modifiedByUserId )

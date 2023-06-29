@@ -31,7 +31,8 @@ public class JudgeAssignmentDistributionRuleController : ControllerBase
             }
 
             string message = "";
-            int judgeAssignmentDistributionRuleRuleNumber = judgeAssignmentDistributionRules[0].RuleNumber;
+            //int judgeAssignmentDistributionRuleRuleNumber = judgeAssignmentDistributionRules[0].RuleNumber;
+            int judgeAssignmentDistributionRuleRuleNumber = Convert.ToInt32(ruleNumberGet);
 
             if(judgeAssignmentDistributionRules.Count() > 0)
             {
@@ -50,7 +51,11 @@ public class JudgeAssignmentDistributionRuleController : ControllerBase
         catch (Exception e)
         {
             response.Result = "failure";
-            response.Message = e.Message;
+            string message = "";
+            message = "No Judge Distribution Assignments exists for Rule Number: " + ruleNumberGet;
+            response.Message = message;
+            List<JudgeAssignmentDistributionRule> nullJudgeAssignmentDistributionRules = new List<JudgeAssignmentDistributionRule>();
+            response.JudgeAssignmentDistributionRules = nullJudgeAssignmentDistributionRules;
             //Create a null Distribution Rule add to dist rule list and send that maybe???
         }
         return response;

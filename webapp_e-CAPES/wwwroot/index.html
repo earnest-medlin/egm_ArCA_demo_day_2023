@@ -477,7 +477,7 @@
                         <h3>Judge Distribution Assignments</h3>
                     </div>
                     <div class="col-3 ">
-                        <button id="judge-distribution-assignments-show-insert-form-button" type="button" class="btn btn-secondary judge-distribution-assignments-rule-show-insert-form-button">
+                        <button id="judge-distribution-assignments-show-insert-form-button" type="button" class="btn btn-secondary judge-distribution-assignment-rule-show-insert-form-button">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
                                 <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
                             </svg>
@@ -506,70 +506,74 @@
                     </div>
                     <div class="col-9">
                         <div class="col col-12 col-judge-distribution_Assignments">
-                            <div id="judge=distribution-assignments-insert-form" class="row">
-                                <h4>Insert Distribution Assignment</h4>
-                                <form>
-                                    <div class="row mb-2">
-                                        <div class="col">
-                                            <label for="text-insert-rule-number" class="form-label">Rule Number</label>
-                                            <input id="text-insert-rule-number" type="text" class="form-control">
+                            <!--Judge Distribution Assignment Table Insert-->
+                            <div id="judge-distribution-assignment-table-insert" class="row">
+                                <div id="judge-distribution-assignment-insert-form" class="row visually-hidden">
+                                    <h4>Insert Distribution Assignment</h4>
+                                    <form>
+                                        <div class="row mb-2">
+                                            <div class="col">
+                                                <label for="text-insert-judge-distibution-rule-number" class="form-label">Rule Number</label>
+                                                <input id="text-insert-judge-distibution-rule-number" type="text" class="form-control">
+                                            </div>
+                                            <div class="col">
+                                                <label for="text-insert-judge-distibution-judge-id" class="form-label">judge Id</label>
+                                                <input id="text-insert-judge-distibution-judge-id" type="text" class="form-control">
+                                            </div>
+                                            <div class="col">
+                                                <label for="text-insert-judge-distibution-assignment-percent" class="form-label">Assignment %</label>
+                                                <input id="text-insert-judge-distibution-assignment-percent" type="text" class="form-control">
+                                            </div>
+                                            <div class="col">
+                                                <label for="text-insert-judge-distibution-priority-level" class="form-label">Priority Level</label>
+                                                <input id="text-insert-judge-distibution-priority-level" type="text" class="form-control">
+                                            </div>       
                                         </div>
-                                        <div class="col">
-                                            <label for="text-insert-judge-id" class="form-label">judge Id</label>
-                                            <input id="text-insert-judge-id" type="text" class="form-control">
+                                        <div class="row g-2 align-items-start justify-content-end">
+                                            <div class="col-auto">
+                                                <button id="judge-distribution-assignment-insert-button" type="button" data-employee-id="1" class="btn btn-outline-warning btn-sm judge-distribution-assignment-insert-button">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
+                                                        <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z"/>
+                                                    </svg>
+                                                    Insert
+                                                </button>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button id="judge-distribution-assignment-cancel-insert-button" type="button" data-employee-id="1" class="btn btn-outline-success btn-sm judge-distribution-assignment-cancel-insert-button">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-octagon-fill" viewBox="0 0 16 16">
+                                                        <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm-6.106 4.5L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
+                                                    </svg>
+                                                    Cancel
+                                                </button>
+                                            </div>
                                         </div>
-                                        <div class="col">
-                                            <label for="text-insert-assignment-percent" class="form-label">Assignment %</label>
-                                            <input id="text-insert-assignment-percent" type="text" class="form-control">
-                                        </div>
-                                        <div class="col">
-                                            <label for="text-insert-priority-level" class="form-label">Priority Level</label>
-                                            <input id="text-insert-priority-level" type="text" class="form-control">
-                                        </div>       
-                                    </div>
-                                    <div class="row g-2 align-items-start justify-content-end">
-                                        <div class="col-auto">
-                                            <button id="judge-distribution-assignment-insert-button" type="button" data-employee-id="1" class="btn btn-outline-warning btn-sm judge-distribution-assignment-insert-button">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
-                                                    <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z"/>
-                                                </svg>
-                                                Insert
-                                            </button>
-                                        </div>
-                                        <div class="col-auto">
-                                            <button id="judge-distribution-assignment-cancel-insert-button" type="button" data-employee-id="1" class="btn btn-outline-success btn-sm judge-distribution-assignment-cancel-insert-button">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-octagon-fill" viewBox="0 0 16 16">
-                                                    <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm-6.106 4.5L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
-                                                </svg>
-                                                Cancel
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
+                                    </form>
+                                </div>
                             </div>
+                            <!--Judge Distribution Assignment Table -->
                             <div id="judge-distribution-assignment-table-div">
                             </div>
                             <!--Judge Distribution Assignments Rule Table Update-->
                             <div id="judge-distribution-assignment-table-update" class="row">
-                                <div id="judge-distribution-assignment-update-form" class="row">
+                                <div id="judge-distribution-assignment-update-form" class="row visually-hidden">
                                     <h4>Update Distribution Asignment</h4>
                                     <form>
                                         <div class="row mb-2">
                                             <div class="col">
-                                                <label for="text-update-rule-number" class="form-label">Rule Number</label>
-                                                <input id="text-update-rule-number" type="text" class="form-control">
+                                                <label for="text-update-judge-distibution-rule-number" class="form-label">Rule Number</label>
+                                                <input id="text-update-judge-distibution-rule-number" type="text" class="form-control">
                                             </div>
                                             <div class="col">
-                                                <label for="text-update-judge-id" class="form-label">judge Id</label>
-                                                <input id="text-update-county-id" type="text" class="form-control">
+                                                <label for="text-update-judge-distibution-judge-id" class="form-label">judge Id</label>
+                                                <input id="text-update-judge-distibution-judge-id" type="text" class="form-control">
                                             </div>
                                             <div class="col">
-                                                <label for="text-update-assignment-percent" class="form-label">Assignment %</label>
-                                                <input id="text-update-assignment-percent" type="text" class="form-control">
+                                                <label for="text-update-judge-distibution-assignment-percent" class="form-label">Assignment %</label>
+                                                <input id="text-update-judge-distibution-assignment-percent" type="text" class="form-control">
                                             </div>
                                             <div class="col">
-                                                <label for="text-update-priority-level" class="form-label">Priority Level</label>
-                                                <input id="text-update-priority-level" type="text" class="form-control">
+                                                <label for="text-update-judge-distibution-priority-level" class="form-label">Priority Level</label>
+                                                <input id="text-update-judge-distibution-priority-level" type="text" class="form-control">
                                             </div>       
                                         </div>
                                         <div class="row g-2 justify-content-end">
@@ -593,18 +597,27 @@
                                     </form>
                                 </div>
                             </div>
+                            <!--Judge Distribution Assignment Table Delete-->
                             <div id="judge-distribution-assignment-table-delete" class="row">
-                                <div id="judge-distribution-assignment-delete-form" class="row">
+                                <div id="judge-distribution-assignment-delete-form" class="row visually-hidden">
                                     <h4>Delete Distribution Assignment</h4>
                                     <form>
                                         <div class="row mb-2">
                                             <div class="col">
-                                                <label for="text-delete-rule-number" class="form-label">Rule Number</label>
-                                                <input id="text-delete-rule-number" type="text" class="form-control">
+                                                <label for="text-delete-judge-distibution-rule-number" class="form-label">Rule Number</label>
+                                                <input id="text-delete-judge-distibution-rule-number" type="text" class="form-control">
                                             </div>
                                             <div class="col">
-                                                <label for="text-delete-judge-id" class="form-label">judge Id</label>
-                                                <input id="text-delet-judge-id" type="text" class="form-control">
+                                                <label for="text-delete-judge-distibution-judge-id" class="form-label">judge Id</label>
+                                                <input id="text-delete-judge-distibution-judge-id" type="text" class="form-control">
+                                            </div>
+                                            <div class="col">
+                                                <label for="text-delete-judge-distibution-assignment-percent" class="form-label">Assignment %</label>
+                                                <input id="text-delete-judge-distibution-assignment-percent" type="text" class="form-control">
+                                            </div>
+                                            <div class="col">
+                                                <label for="text-delete-judge-distibution-priority-level" class="form-label">Priority Level</label>
+                                                <input id="text-delete-judge-distibution-priority-level" type="text" class="form-control">
                                             </div> 
                                         </div>
                                         <div class="row g-2 justify-content-end">
@@ -617,7 +630,7 @@
                                                 </button>
                                             </div>
                                             <div class="col-auto">
-                                                <button id="case-assignment-rule-cancel-delete-button" type="button" data-employee-id="1" class="btn btn-outline-success btn-sm judge-distribution-assignment-cancel-delete-button">
+                                                <button id="judge-distribution-assignment-cancel-delete-button" type="button" data-employee-id="1" class="btn btn-outline-success btn-sm judge-distribution-assignment-cancel-delete-button">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-octagon-fill" viewBox="0 0 16 16">
                                                         <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm-6.106 4.5L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
                                                     </svg>
